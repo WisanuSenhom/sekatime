@@ -385,11 +385,13 @@ function editauth() {
 const loader = document.getElementById('loader');
 
 function showLoader() {
-    loader.style.display = 'block'; // แสดง loader
+       var overlay = document.getElementById('loadingOverlay');
+      overlay.style.display = 'flex';
 }
 
 function hideLoader() {
-    loader.style.display = 'none'; // ซ่อน loader
+    var overlay = document.getElementById('loadingOverlay');
+      overlay.style.display = 'none';
 }
 
 
