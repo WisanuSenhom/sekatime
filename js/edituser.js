@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    //   hideLoader()
+     showLoader();
     urlapi = 'https://script.google.com/macros/s/AKfycbwSQn-VpYHC6lGntFx3eqZbeGW5_MJhOvT9bynDi7j6wlFpkJILoM1ADjhlz3AuoUVLWQ/exec';
     queryapi = `?id=${localStorage.getItem('uuid')}`;
     fetch(urlapi + queryapi)
