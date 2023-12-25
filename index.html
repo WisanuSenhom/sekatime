@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/report.css">
+  <link rel="stylesheet" href="css/setting.css">
+  <title>ระบบจัดการการลงเวลา | SekaTime</title>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+</head>
+
+<body>
+
+  <!-- Sidebar เมนูซ้าย -->
+  <div class="sidebar">
+    <a href="#" class="logo">
+      <i class='bx bxs-map-pin'></i>
+      <div class="logo-name"><span>Seka</span>Time</div>
+    </a>
+    <ul class="side-menu">
+      <li class="active"><a href="index.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+      <li><a href="http://wisanusenhom.github.io/nu" target="_blank" rel="noopener noreferrer"><i
+            class='bx bx-time'></i>ลงเวลา</a></li>
+      <li><a href="https://wisanusenhom.github.io/nu/request" target="_blank" rel="noopener noreferrer"><i
+            class='bx bx-message-square-dots'></i>ยื่นคำขอ</a></li>
+      <li><a href="wait.html"><i class='bx bx-message'></i>คำขอ</a></li>
+      <li><a href="allow.html"><i class='bx bx-message-check'></i>อนุญาต</a></li>
+      <li><a href="check.html"><i class='bx bx-check-shield'></i>ตรวจสอบ</a></li>
+      <li><a href="report.html"><i class='bx bxs-report'></i>รายงาน</a></li>
+      <li><a href="user.html"><i class='bx bx-group'></i>บุคลากร</a></li>
+      <li><a href="office.html"><i class='bx bx-store-alt'></i>หน่วยงาน</a></li>
+      <li><a href="setting.html"><i class='bx bx-cog'></i>ตั้งค่า</a></li>
+    </ul>
+
+    <!-- OT -->
+    <ul class="side-menu">
+      <!-- <li><a href="otstamp.html"><i class='bx bxs-time-five'></i>ลงเวลา OT</a></li>
+      <li><a href="otconfirm.html"><i class='bx bxs-message-square-check'></i>รับรอง OT</a></li>
+      <li><a href="otreport.html"><i class='bx bxs-book-alt'></i>รายงาน OT</a></li> -->
+      <li><a href="#" onclick="showSwal()"><i class='bx bxs-time-five'></i>ลงเวลา OT</a></li>
+      <li><a href="#" onclick="showSwal()"><i class='bx bxs-message-square-check'></i>รับรอง OT</a></li>
+      <li><a href="#" onclick="showSwal()"><i class='bx bxs-book-alt'></i>รายงาน OT</a></li>
+    </ul>
+
+    <ul class="side-menu">
+      <li>
+        <a href="#" class="logout" onclick="clearLocal()">
+          <i class='bx bx-log-out-circle'></i>
+          Logout
+        </a>
+      </li>
+    </ul>
+    <ul class="side-menu">
+      <li>
+        <a href="#">
+          <i class='bx bx-copyright'></i>
+          สสอ.เซกา จ.บึงกาฬ
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- End of Sidebar เมนูซ้าย -->
+
+  <!-- Main Content  -->
+  <div class="content">
+    <!-- Navbar เมนูบน-->
+    <nav>
+      <i class='bx bx-menu'></i>
+      <form action="#">
+        <div class="form-input">
+          <input id="searchInput" type="search" placeholder="Search..." />
+          <button class="search-btn" type="button" onclick="searchAndHighlight()"><i class='bx bx-search'></i>.</button>
+        </div>
+      </form>
+      <input type="checkbox" id="theme-toggle" hidden>
+      <label for="theme-toggle" class="theme-toggle"></label>
+      <a href="#" class="notif">
+        <i class='bx bx-bell'></i>
+        <span class="count">9+</span>
+      </a>
+      <a href="#" class="profile">
+        <img id="upic" src="images/logo.png" alt="">.
+      </a>
+    </nav>
+
+    <!-- End of Navbar เมนูบน -->
+
+    <!-- หัวเรื่อง -->
+    <!-- โหลด -->
+    <!-- <div id="loader" class="loader"></div> -->
+    <div class="bottom-data">
+
+      <main>
+        <div class="header">
+          <div class="left">
+            <h1>Dashboard</h1>
+            <ul class="breadcrumb">
+              <li><a href="#">วันนี้ : </a></li>
+              <li>
+                <p id="utimeline" class="active"></p>
+              </li>
+            </ul>
+          </div>
+          <a href="" class="report" onclick="refreshPage()">
+            <i class='bx bx-refresh'></i>
+            <span>รีเฟรช</span>
+          </a>
+        </div>
+        <!-- Insights -->
+        <ul class="insights">
+          <li>
+            <i class='bx bx-message'></i>
+            <span class="info">
+              <h3 id="report01">
+                ...
+              </h3>
+              <p>คำขอ</p>
+            </span>
+          </li>
+          <li><i class='bx bx-message-check'></i>
+            <span class="info">
+              <h3 id="report02">
+                ...
+              </h3>
+              <p>อนุญาตแล้ว</p>
+            </span>
+          </li>
+          <li><i class='bx bx-time'></i>
+            <span class="info">
+              <h3 id="report03">
+                ...
+              </h3>
+              <p>ลงเวลา</p>
+            </span>
+          </li>
+          <li><i class='bx bx-check-shield'></i>
+            <span class="info">
+              <h3 id="report04">
+                ...
+              </h3>
+              <p>ตรวจสอบแล้ว</p>
+            </span>
+          </li>
+
+        </ul>
+        <!-- End of Insights -->
+
+        <!-- iframe -->
+        <!-- <iframe src="" frameborder="0" title="dd">dd</iframe> -->
+        <!-- end of iframe -->
+
+        <!-- 2 collumn -->
+        <div class="bottom-data">
+          <!-- Reminders -->
+          <div class="reminders">
+            <div class="header">
+              <i class='bx bx-note'></i>
+              <h3>Looker Studio</h3>
+            </div>
+            <ul class="task-list">
+              <li class="completed">
+                <div class="task-title">
+
+                  <p>แดชบอร์ดสรุปการลงเวลาภาพรวม</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded' onclick="dashboardlooker()"></i>
+              </li>
+              <!-- <li class="completed">
+                <div class="task-title">
+
+                  <p>แดชบอร์ดแสดงพิกัดตามการลงเวลา</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded'></i>
+              </li> -->
+              <!-- <li class="not-completed">
+                <div class="task-title">
+      
+                  <p>แดชบอร์ด</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded'></i>
+              </li> -->
+            </ul>
+          </div>
+
+          <!-- End of Reminders-->
+          <div class="reminders">
+            <div class="header">
+              <i class='bx bx-note'></i>
+              <h3>Google Sheet</h3>
+
+            </div>
+            <ul class="task-list">
+              <li class="completed">
+                <div class="task-title">
+
+                  <p>รายงานการลงเวลาปฏิบัติงาน</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded' onclick='sheet1()'></i>
+              </li>
+              <!-- <li class="completed">
+                <div class="task-title">
+
+                  <p>รายชื่อลงเวลามาแล้ววันนี้</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded' onclick='sheet2()'></i>
+              </li>
+              <li class="not-completed">
+                <div class="task-title">
+
+                  <p>รายชื่อยังไม่ลงเวลามาในวันนี้</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded' onclick='sheet3()'></i>
+              </li>
+              <li class="completed">
+                <div class="task-title">
+
+                  <p>Log การลงเวลา</p>
+                </div>
+                <i class='bx bx-dots-vertical-rounded' onclick='sheet2()'></i>
+              </li> -->
+
+            </ul>
+          </div>
+
+        </div>
+
+      </main>
+
+
+    </div>
+
+    <!-- โหลดหน้าเว็บ -->
+    <div class="loader-wrapper">
+      <div class="loaderx"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="js/dash.js"></script>
+    <!-- <script src="js/webnoti.js"></script> -->
+
+    <!-- Sweetalert -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <!-- Datatable 5 
+ <link rel="stylesheet" href="" />
+<script type="text/javascript" src=""></script>
+<script type="text/javascript" src=""></script>
+ -->
+
+    <!-- Boostrap & fontawesome js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+
+    <!-- Datatable jquery -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.dataTables.min.js"></script>
+
+    <!-- Datatable ป้อนอัตโนมัติ  -->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/autofill/2.6.0/css/autoFill.dataTables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/autofill/2.6.0/js/dataTables.autoFill.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/autofill/2.6.0/js/autoFill.dataTables.min.js"></script> -->
+
+    <!-- Datatable ปุ่ม  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.dataTables.min.js"></script>
+    <!-- การควบคุมการมองเห็นคอลัมน์: -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+    <!-- ปุ่มพิมพ์: -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <!-- ปุ่มส่งออก HTML5: -->
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <!-- ปุ่มส่งออก exel -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
+
+    <!-- Datatable ColReorder  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.7.0/css/colReorder.dataTables.min.css" />
+    <script type="text/javascript"
+      src="https://cdn.datatables.net/colreorder/1.7.0/js/dataTables.colReorder.min.js"></script>
+
+    <!-- Datatable แสดงผลตามขนาดหน้าจอ ปุ่มซ่อน -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+    <script type="text/javascript"
+      src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+    <!-- Datatable ส่วนหัวคงที่ -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css" />
+    <script type="text/javascript"
+      src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
+
+
+    <!-- Datatable Select  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+
+</body>
+
+</html>

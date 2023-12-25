@@ -1,0 +1,52 @@
+#dateRangeForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* ระยะห่างระหว่าง element */
+}
+
+
+#dateRangeForm input {
+    flex: 1; /* Make the input expand to fill the available width */
+    max-width: 200px; /* Set the maximum width of the input to 200 pixels */
+    border: 2px solid #007bff; /* Add a 2px solid blue border */
+    border-radius: 20px; /* Add a 20px border-radius for rounded corners */
+    padding: 8px; /* Add padding for better visual appearance */
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+    background-color: transparent;
+    /* Additional styles for text */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center the text horizontally */
+    color: rgb(14, 65, 235);
+    text-shadow: 1px 1px 1px  #fcfcfd;
+}
+
+
+
+@media (max-width: 600px) {
+    #dateRangeForm {
+        flex-direction: column; /* เมื่อจอเล็กลงไปให้แสดงเป็นคอลัมน์ */
+    }
+
+    #dateRangeForm label,
+    #dateRangeForm input {
+        flex: 1; /* ทำให้ element ขยายเต็ม width ในการแสดงเป็นคอลัมน์ */
+    }
+}
+
+#dateRangeForm input[type="submit"] {
+    background-color: #007bff; /* Default blue color */
+    color: #ffffff; /* White text color */
+    padding: 10px 15px; /* Adjust padding as needed */
+    border: none; /* Remove border */
+    border-radius: 20px; /* Add border-radius for rounded corners */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold; /* Make the text bold */
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
+}
+
+#dateRangeForm input[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+
