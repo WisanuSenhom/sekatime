@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/report.css">
+  <link rel="stylesheet" href="css/setting.css">
+  <title>หน่วยงาน | SekaTime</title>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+
+</head>
+
+<body>
+
+  <!-- Sidebar เมนูซ้าย -->
+  <div class="sidebar">
+    <a href="#" class="logo">
+      <i class='bx bxs-map-pin'></i>
+      <div class="logo-name"><span>Seka</span>Time</div>
+    </a>
+    <ul class="side-menu">
+      <li><a href="index.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+      <li><a href="http://wisanusenhom.github.io/nu" target="_blank" rel = "noopener noreferrer" ><i class='bx bx-time'></i>ลงเวลา</a></li>
+      <li><a href="https://wisanusenhom.github.io/nu/request" target="_blank" rel = "noopener noreferrer" ><i class='bx bx-message-square-dots'></i>ยื่นคำขอ</a></li>
+      <li><a href="wait.html"><i class='bx bx-message'></i>คำขอ</a></li>
+      <li><a href="allow.html"><i class='bx bx-message-check'></i>อนุญาต</a></li>
+      <li><a href="check.html"><i class='bx bx-check-shield'></i>ตรวจสอบ</a></li>
+      <li><a href="report.html"><i class='bx bxs-report'></i>รายงาน</a></li>
+      <li><a href="user.html"><i class='bx bx-group'></i>บุคลากร</a></li>
+      <li><a href="office.html"><i class='bx bx-store-alt'></i>หน่วยงาน</a></li>
+      <li class="active"><a href="setting.html"><i class='bx bx-cog'></i>ตั้งค่า</a></li>
+    </ul>
+    <ul class="side-menu">
+      <li>
+        <a href="#" class="logout" onclick="clearLocal()">
+          <i class='bx bx-log-out-circle'></i>
+          Logout
+        </a>
+      </li>
+    </ul>  
+    <ul class="side-menu">
+      <li>
+        <a href="#" >
+          <i class='bx bx-copyright'></i>
+          สสอ.เซกา จ.บึงกาฬ
+        </a>
+      </li>
+    </ul>  
+  </div>
+
+  <!-- End of Sidebar เมนูซ้าย -->
+
+  <!-- Main Content  -->
+  <div class="content">
+    <!-- Navbar เมนูบน-->
+    <nav>
+      <i class='bx bx-menu'></i>
+      <form action="#">
+        <div class="form-input">
+          <input id="searchInput" type="search" placeholder="Search..." />
+          <button class="search-btn" type="button" onclick="searchAndHighlight()"><i class='bx bx-search'></i>.</button>
+        </div>
+      </form>
+      <input type="checkbox" id="theme-toggle" hidden>
+      <label for="theme-toggle" class="theme-toggle"></label>
+      <!-- <a href="#" class="notif">
+                <i class='bx bx-bell'></i>
+                <span class="count">12</span>
+            </a> -->
+      <a href="#" onclick="editpic()" class="profile">
+        <img id="upic" src="images/logo.png" alt="">.
+      </a>
+    </nav>
+
+    <!-- End of Navbar เมนูบน -->
+
+    <!-- หัวเรื่อง -->
+    <main>
+      <div class="header">
+        <div class="left">
+          <h1>การตั้งค่า</h1>
+        </div>
+                <a href="" class="report" onclick="refreshPage()">
+          <i class='bx bx-refresh'></i>
+          <span>รีเฟรช</span>
+        </a>
+      </div>
+ <!-- โหลด -->
+ <div id="loader" class="loader"></div>
+      <div class="bottom-data">
+     
+        <!-- Reminders -->
+        <div class="reminders">
+          <div class="header">
+            <i class='bx bx-user'></i>
+            <h3>ข้อมูลส่วนตัว</h3>
+            <ul class="task-list">
+              <li >
+            <form id="edituser">
+   
+              <label for="pname">คำนำหน้า:</label>
+              <input type="text" id="pname" name="pname">
+         
+              <label for="fname">ชื่อ:</label>
+              <input type="text" id="fname" name="fname">
+        
+              <label for="lname">สกุล:</label>
+              <input type="text" id="lname" name="lname">
+
+              <label for="position">ตำแหน่ง:</label>
+              <input type="text" id="position" name="position">
+
+              <input type="button" value="บันทึก" onclick="editname()">
+            </form>
+          </li>
+        </ul>
+          </div>
+
+        </div>
+        <!-- End of Reminders-->
+
+        <!-- Reminders -->
+        <div class="reminders">
+          <div class="header">
+            <i class='bx bx-store-alt'></i>
+            <h3>สถานที่ทำงาน</h3>
+            <ul class="task-list">
+              <li >
+            <form id="edituser">
+
+              <label for="xmain">สังกัด:</label>
+              <select id="xmain" onchange="loadSubcategories()">
+                <!-- Options will be dynamically added here -->
+              </select>
+
+              <label for="xsub">กลุ่มงาน/หน่วยงาน:</label>
+              <select id="xsub"  onchange="loadSubdatas()">
+                <!-- Options will be dynamically added here -->
+              </select>
+
+              <label for="cmain">รหัสหลัก:</label>
+              <input type="text" id="cmain" name="cmain" disabled>
+
+              <label for="csub">รหัสรอง:</label>
+              <input type="text" id="csub" name="csub" disabled>
+              
+              <input type="hidden" id="lat" name="lat" disabled>
+              <input type="hidden" id="long" name="long" disabled>
+              <input type="hidden" id="db1" name="db1" disabled>
+              <!-- <input type="hidden" id="db2" name="db2" disabled>
+              <input type="hidden" id="db3" name="db3" disabled> -->
+
+              <input type="button" value="บันทึก" onclick="editwork()" >
+            </form>
+          </li>
+        </ul>
+          </div>
+
+        </div>
+        <!-- End of Reminders-->
+
+        <!-- Reminders -->
+        <div class="reminders">
+          <div class="header">
+            <i class='bx bx-image'></i>
+            <h3>ปรับปรุงรูปโปรไฟล์</h3>
+            <ul class="task-list">
+              <li >
+            <form id="edituser">
+              <img id ="yourpic" src="images/profile.png" alt="Avatar Image" class="avatar">
+              <input type="button" value="บันทึก" onclick="editpic()">
+            </form>
+          </li>
+        </ul>
+          </div>
+
+        </div>
+        <!-- End of Reminders-->
+
+        <!-- Reminders -->
+        <div class="reminders">
+          <div class="header">
+            <i class='bx bx-notification'></i>
+            <h3>Line Notify</h3>
+            <ul class="task-list">
+              <li >
+            <form id="edittoken">
+              <label for="token">Token:</label>
+              <input type="text" id="token" name="token" disabled>
+              <input type="submit" value="ออก Token">
+              <input type="button" value="บันทึก" onclick="editauth()">
+            </form>
+          </li>
+        </ul>
+          </div>
+
+        </div>
+        <!-- End of Reminders-->
+
+
+        <!-- Reminders -->
+        <div class="reminders">
+          <div class="header">
+            <i class='bx bx-alarm'></i>
+            <h3>การแจ้งเตือน</h3>
+            <ul class="task-list">
+              <li >
+            <form id="edituser">
+              <label for="toggleButton">การแจ้งเตือนผ่าน Line Notify:</label>
+              <input type="button" id="toggleButton" class="off" onclick="toggleState()" value="รับการแจ้งเตือน">
+            </form>
+          </li>
+        </ul>
+          </div>
+
+        </div>
+        <!-- End of Reminders-->
+
+
+  </div>
+
+  <!-- โหลดหน้าเว็บ -->
+  <div class="loader-wrapper">
+    <div class="loaderx"></div>
+  </div>
+
+  <script src="js/index.js"></script>
+  <!-- <script src="js/check.js"></script> -->
+  <script src="js/edituser.js"></script>
+
+  <!-- Sweetalert -->
+  <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+  <!-- Datatable 5 
+ <link rel="stylesheet" href="" />
+<script type="text/javascript" src=""></script>
+<script type="text/javascript" src=""></script>
+ -->
+
+  <!-- Boostrap & fontawesome js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+  <!-- Datatable jquery -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/dataTables.dataTables.min.js"></script>
+
+  <!-- Datatable ป้อนอัตโนมัติ  -->
+  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/autofill/2.6.0/css/autoFill.dataTables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/autofill/2.6.0/js/dataTables.autoFill.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/autofill/2.6.0/js/autoFill.dataTables.min.js"></script> -->
+
+  <!-- Datatable ปุ่ม  -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.dataTables.min.js"></script>
+  <!-- การควบคุมการมองเห็นคอลัมน์: -->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+  <!-- ปุ่มพิมพ์: -->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+  <!-- ปุ่มส่งออก HTML5: -->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+  <!-- ปุ่มส่งออก exel -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+
+
+  <!-- Datatable ColReorder  -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/colreorder/1.7.0/css/colReorder.dataTables.min.css" />
+  <script type="text/javascript"
+    src="https://cdn.datatables.net/colreorder/1.7.0/js/dataTables.colReorder.min.js"></script>
+
+  <!-- Datatable แสดงผลตามขนาดหน้าจอ ปุ่มซ่อน -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+  <script type="text/javascript"
+    src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+  <!-- Datatable ส่วนหัวคงที่ -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.4.0/css/fixedHeader.dataTables.min.css" />
+  <script type="text/javascript"
+    src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
+
+
+  <!-- Datatable Select  -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css" />
+  <script type="text/javascript" src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
+
+</body>
+
+</html>

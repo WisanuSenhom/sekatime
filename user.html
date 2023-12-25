@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>บุคลากร | SekaTime</title>
+
+    <!-- datatable js/css -->
+     <!-- Datatable css -->
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/datetime/1.5.1/css/dataTables.dateTime.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://editor.datatables.net/extensions/Editor/css/editor.dataTables.min.css"
+    />
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://code.jquery.com/jquery-3.7.0.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://cdn.datatables.net/datetime/1.5.1/js/dataTables.dateTime.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      language="javascript"
+      src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js"
+    ></script>
+<!-- Datatable แสดงผลตามขนาดหน้าจอ ปุ่มซ่อน -->
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" />
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+
+
+  </head>
+
+  <body>
+     <!-- Sidebar เมนูซ้าย -->
+  <div class="sidebar">
+    <a href="#" class="logo">
+      <i class='bx bxs-map-pin'></i>
+      <div class="logo-name"><span>Seka</span>Time</div>
+    </a>
+    <ul class="side-menu">
+      <li><a href="index.html"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+      <li><a href="http://wisanusenhom.github.io/nu" target="_blank" rel = "noopener noreferrer" ><i class='bx bx-time'></i>ลงเวลา</a></li>
+      <li><a href="https://wisanusenhom.github.io/nu/request" target="_blank" rel = "noopener noreferrer" ><i class='bx bx-message-square-dots'></i>ยื่นคำขอ</a></li>
+      <li><a href="wait.html"><i class='bx bx-message'></i>คำขอ</a></li>
+      <li><a href="allow.html"><i class='bx bx-message-check'></i>อนุญาต</a></li>
+      <li><a href="check.html"><i class='bx bx-check-shield'></i>ตรวจสอบ</a></li>
+      <li><a href="report.html"><i class='bx bxs-report'></i>รายงาน</a></li>
+      <li class="active"><a href="user.html"><i class='bx bx-group'></i>บุคลากร</a></li>
+      <li><a href="office.html"><i class='bx bx-store-alt'></i>หน่วยงาน</a></li>
+      <li ><a href="setting.html"><i class='bx bx-cog'></i>ตั้งค่า</a></li>
+    </ul>
+    <ul class="side-menu">
+      <li>
+        <a href="#" class="logout" onclick="clearLocal()">
+          <i class='bx bx-log-out-circle'></i>
+          Logout
+        </a>
+      </li>
+    </ul>  
+    <ul class="side-menu">
+      <li>
+        <a href="#" >
+          <i class='bx bx-copyright'></i>
+          สสอ.เซกา จ.บึงกาฬ
+        </a>
+      </li>
+    </ul>  
+  </div>
+
+  <!-- End of Sidebar เมนูซ้าย -->
+
+    <!-- Main Content  -->
+    <div class="content">
+      <!-- Navbar เมนูบน-->
+      <nav>
+        <i class="bx bx-menu"></i>
+        <form id="searchForm">
+          <div class="form-input">
+            <input id="searchInput" type="search" placeholder="Search..." />
+            <button class="search-btn" type="button" onclick="searchAndHighlight()"><i class='bx bx-search'></i>.</button>
+          </div>
+        </form>
+        <input type="checkbox" id="theme-toggle" hidden />
+        <label for="theme-toggle" class="theme-toggle"></label>
+        <!-- <a href="#" class="notif">
+                <i class='bx bx-bell'></i>
+                <span class="count">12</span>
+            </a> -->
+        <a href="#" class="profile">
+          <img id="upic" src="images/logo.png" alt="" />.
+        </a>
+      </nav>
+
+      <!-- End of Navbar เมนูบน -->
+
+      <!-- หัวเรื่อง -->
+      <main>
+        <div class="header">
+          <div class="left">
+            <h1>บุคลากร</h1>
+            <!-- <ul class="breadcrumb">
+                        <li><a href="#">
+                                Analytics
+                            </a></li>
+                        
+                        <li><a href="#" class="active">Shop</a></li>
+                    </ul> -->
+          </div>
+          <a href="" class="report" onclick="refreshPage()">
+            <i class="bx bx-refresh"></i>
+            <span>รีเฟรช</span>
+          </a>
+        </div>
+        
+        
+        <!-- สิ้นสุดหัวเรื่อง -->
+       
+               <!-- ตาราง -->
+          <div class="bottom-data">
+            <div class="orders">
+              <table id="userdata" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>สถานะ</th>
+                    <th>รูป</th>
+                    <th>รหัส</th>
+                    <th>ชื่อ - สกุล</th>
+                    <th>ตำแหน่ง</th>
+                    <th>สังกัด</th>
+                    <th>กลุ่มงาน/หน่วยงาน</th>
+                    <th>สิทธิ์</th>
+                    <th>หัวหน้า</th>
+                    <th>ผู้บริหาร</th>
+                    <th>ที่</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+                <tfoot>
+                  <tr>
+                    <th>สถานะ</th>
+                    <th>รูป</th>
+                    <th>รหัส</th>
+                    <th>ชื่อ - สกุล</th>
+                    <th>ตำแหน่ง</th>
+                    <th>สังกัด</th>
+                    <th>กลุ่มงาน/หน่วยงาน</th>
+                    <th>สิทธิ์</th>
+                    <th>หัวหน้า</th>
+                    <th>ผู้บริหาร</th>
+                    <th>ที่</th>
+                  </tr>
+                </tfoot>
+              </table>
+               <!-- โหลด -->
+        <div id="loader" class="loader"></div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="loader-wrapper">
+      <div class="loaderx"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script src="js/user.js"></script>
+
+    <!-- Sweetalert -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    
+  </body>
+</html>
