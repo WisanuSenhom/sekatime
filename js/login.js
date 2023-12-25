@@ -7,6 +7,7 @@ async function getProfile() {
 
 async function getmember(yourid,yourpic){
   localStorage.clear();
+    showLoading();
     let gas = `https://script.google.com/macros/s/AKfycbyY-5A1mpNjJjD9CjPEX4fSW5N6xB7PoMAODHgjMJuuLARrCjvm5csgFamB8MKbjUB9/exec?id=${yourid}`;
     const records = await fetch(gas);
     const data = await records.json();  
@@ -95,13 +96,8 @@ async function getmember(yourid,yourpic){
                     console.log("สำเร็จ")
                 }
             });
-        
-     
-
-  
-      
-  
     });
+   hideLoading() ;     
 }}
 
 function clearLocal() {
@@ -115,9 +111,19 @@ function clearLocal() {
 })
 }
 
+function showLoading() {
+  var overlay = document.getElementById('loadingOverlay');
+  overlay.style.display = 'flex';
+}
+
+function hideLoading() {
+  var overlay = document.getElementById('loadingOverlay');
+  overlay.style.display = 'none';
+}
 
 
 async function main() {
+    hideLoading() ;  
     await liff.init({ liffId: "1654797991-G0jqNZq4" })
       if (liff.isLoggedIn()) {
         getProfile();
