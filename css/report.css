@@ -7,7 +7,7 @@
 
 #dateRangeForm input {
     flex: 1; /* Make the input expand to fill the available width */
-    max-width: 200px; /* Set the maximum width of the input to 200 pixels */
+    max-width: 180px; /* Set the maximum width of the input to 200 pixels */
     border: 2px solid #007bff; /* Add a 2px solid blue border */
     border-radius: 20px; /* Add a 20px border-radius for rounded corners */
     padding: 8px; /* Add padding for better visual appearance */
