@@ -148,7 +148,9 @@ body{
     overflow-x: hidden;
     transition: all 0.3s ease;
 }
-
+.sidebar .side-menu li:hover a{
+    color: var(--primary); 
+}
 .sidebar .side-menu li.active a{
     color: var(--success);
 }
