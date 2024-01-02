@@ -19,8 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Set the text content of the element with the fetched data
                 utimelineElement.innerText = timelineData;
             } else {
-                console.error('Invalid or empty server response:', data);
-                    var timelineData = `${uname} : ยังไม่ลงเวลาในการปฏิบัติงาน `;
+                var timelineData = `${uname} : ยังไม่ลงเวลาในการปฏิบัติงาน `;
+              //  console.error('Invalid or empty server response:', data);
+           
                 // Handle errors or empty responses here
             }
         })
