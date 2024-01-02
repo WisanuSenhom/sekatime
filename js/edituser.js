@@ -397,19 +397,36 @@ function hideLoader() {
 
 
   // เมื่อกดปุ่ม submit
-  var form = document.getElementById("edittoken");
-  // Attach a function to the form's submit event
-  form.addEventListener("submit", function(event) {
-      // Prevent the default form submission behavior
-      event.preventDefault();
-      // Your custom logic here
-      let uuid = localStorage.getItem("uuid");
-      let url = 'https://wisanusenhom.github.io/sekatime/setting.html';
-      let cid = 'oXTr5al05irtPoZ9pkWof9';
-      let noti = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${cid}&redirect_uri=${url}&scope=notify&state=${uuid}`;
-      window.location.replace(noti);
-      // alert("Form submitted!"); // Replace this with your actual logic
-  });
+var form = document.getElementById("edittoken");
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Use SweetAlert2 for confirmation
+    Swal.fire({
+        title: "ออก Line Token?",
+        text: "เมื่อออก Line Token แล้ว ให้รอหน้าเว็บโหลดเสร็จ แล้วกดปุ่ม บันทึก",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ตกลง",
+        cancelButtonText: "ยกเลิก"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // If user confirms, proceed with your logic
+            let uuid = localStorage.getItem("uuid");
+            let url = 'https://wisanusenhom.github.io/sekatime/setting.html';
+            let cid = 'oXTr5al05irtPoZ9pkWof9';
+            let noti = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${cid}&redirect_uri=${url}&scope=notify&state=${uuid}`;
+            
+            // Redirect the user
+            window.location.replace(noti);
+        }
+        // If user cancels, you can handle it or do nothing
+    });
+});
+
 
 
   // รับการแจ้งเตือน
