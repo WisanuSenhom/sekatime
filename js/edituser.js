@@ -404,7 +404,7 @@ function hideLoader() {
       event.preventDefault();
       // Your custom logic here
       let uuid = localStorage.getItem("uuid");
-      let url = 'https://ba59-134-236-114-194.ngrok-free.app/setting.html';
+      let url = 'https://wisanusenhom.github.io/sekatime/setting.html';
       let cid = 'oXTr5al05irtPoZ9pkWof9';
       let noti = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${cid}&redirect_uri=${url}&scope=notify&state=${uuid}`;
       window.location.replace(noti);
