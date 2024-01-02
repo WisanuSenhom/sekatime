@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 utimelineElement.innerText = timelineData;
             } else {
                 console.error('Invalid or empty server response:', data);
+                    var timelineData = `${uname} : ยังไม่ลงเวลาในการปฏิบัติงาน `;
                 // Handle errors or empty responses here
             }
         })
