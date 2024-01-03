@@ -301,7 +301,8 @@ function editpic() {
                         text: 'การแก้ไขข้อมูลเสร็จสิ้น',
                         icon: 'success'
                     }).then(() => {
-                        location.reload();
+                       // location.reload();
+                           localStorage.clear();
                     });
                 })
                 .catch(error => {
