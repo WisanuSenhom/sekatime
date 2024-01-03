@@ -174,7 +174,8 @@ function editname() {
                         text: 'การแก้ไขข้อมูลเสร็จสิ้น',
                         icon: 'success'
                     }).then(() => {
-                        location.reload();
+                        // location.reload();
+                         localStorage.clear();
                     });
                 })
                 .catch(error => {
@@ -234,7 +235,8 @@ function editwork() {
                         text: 'การแก้ไขข้อมูลเสร็จสิ้น',
                         icon: 'success'
                     }).then(() => {
-                        location.reload();
+                        // location.reload();
+                         localStorage.clear();
                     });
                 })
                 .catch(error => {
