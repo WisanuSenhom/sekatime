@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                     });
                                 }
                             }
-                        },
+                        }, 'excel', 'print'
                         // สิ้นสุดปุ่ม
                     ],
                     "select": true,
