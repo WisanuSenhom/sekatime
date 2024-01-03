@@ -257,7 +257,7 @@ function searchAndHighlight() {
                                                     ระยะ : ${cc.outdistan} ${cc.outunit}<br>
                                                     พิกัด : ${cc.geo}<br>
                                                     `,
-                                                footer: `<a href="https://www.google.co.th/maps/search/" target="_blank">ดูพิกัดใน : Google Map</a>`
+                                                footer: `<a href="https://www.google.co.th/maps/search/${cc.gis}" target="_blank">ดูพิกัดใน : Google Map</a>`
                                             });
                                         } else {
                                             Swal.showValidationMessage("OTP ไม่ถูกต้อง หากเจ้าของข้อมูลไม่ได้รับ OTP ให้ ออก Line Token หน้าตั้งค่า");
