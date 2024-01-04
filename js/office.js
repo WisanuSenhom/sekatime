@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // สำหรับแสดง css โหลด
     showLoader()
     // เมื่อหน้าเว็บโหลดเสร็จ, ดึงข้อมูล category และใส่ใน dropdown
-    await fetch(`https://script.google.com/macros/s/AKfycbxf96jrIyggdduxUK4ZMl_6lz2ewUE7jbarxnnu1W1hlTsQBkwQoEMdO6aOyCWWlkEoPg/exec?code=${localStorage.getItem('mainsub')}&role=${localStorage.getItem('role')}`)
+    await fetch(`https://script.google.com/macros/s/AKfycbxf96jrIyggdduxUK4ZMl_6lz2ewUE7jbarxnnu1W1hlTsQBkwQoEMdO6aOyCWWlkEoPg/exec?code=${localStorage.getItem('mainsub')}&code2=${localStorage.getItem('office')}&role=${localStorage.getItem('role')}`)
         .then(response => response.json())
         .then(data => {
             // ปิด css โหลด
