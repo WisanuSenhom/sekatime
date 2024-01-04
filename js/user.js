@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
              
                     "buttons": [
                         {
-                            text: 'สถานะ',
+                            text: 'กำหนดสถานะ',
                             action: async function () {
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             }
                         },
                         {
-                            text: 'สิทธิ์',
+                            text: 'กำหนดสิทธิ์',
                             action: async function () {
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                         },
                         {
-                            text: 'หัวหน้า/ผอ./ผู้รับรอง/ผู้บริหาร/ผู้ช่วย',
+                            text: 'กำหนด หัวหน้า/ผอ./ผู้รับรอง/ผู้บริหาร/ผู้ช่วย',
                             action: async function () {
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
@@ -307,7 +307,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                         // },
                         {
-                            text: 'เลขที่หนังสือ',
+                            text: 'กำหนด เลขที่หนังสือ',
                             action: async function () {
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
