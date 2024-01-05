@@ -408,7 +408,7 @@ form.addEventListener("submit", function (event) {
     // Use SweetAlert2 for confirmation
     Swal.fire({
         title: "ออก Line Token?",
-        text: "เมื่อออก Line Token แล้ว ให้รอหน้าเว็บโหลดเสร็จ แล้วกดปุ่ม บันทึก",
+        text: "เมื่อออก Line Token แล้ว โปรดให้รอหน้าเว็บโหลดเสร็จ แล้วกดปุ่ม บันทึก อีกครั้ง.!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
