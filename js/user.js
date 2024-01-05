@@ -110,11 +110,39 @@ document.addEventListener("DOMContentLoaded", async function () {
                                             return new Promise((resolve) => {
                                                 if (value !== '') {
                                                     fetch(`https://script.google.com/macros/s/AKfycbz0tjKWPT4kawZplDkWr67d0PncRzdWX6FyC2FK-x5_bzPO-D30xBAL-irqAUMnJSeg/exec?id=${selectedId}&sts=${value}`)
-                                                        .then(response => response.json())
-                                                        .then(data >= {
-                                                            
+                                                .then(response => {
+                                                        if (!response.ok) {
+                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                        }
+                                                        return response.json();
+                                                    })
+                                                    .then(data => {
+                                                        // Process the fetched data here
+                                                        // ...
+                                        
+                                                        // Trigger a SweetAlert2 success notification
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Successful',
+                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                        }).then(() => {
+                                                            location.reload();
                                                         });
-                                                    resolve();
+                                        
+                                                        // Resolve the promise
+                                                        resolve();
+                                                    })
+                                                    .catch(error => {
+                                                        // Handle fetch or processing errors with SweetAlert2
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Error',
+                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                        });
+                                        
+                                                        // Reject the promise with the error
+                                                        reject(error);
+                                                    });
                                                 } else {
                                                     resolve("Please select");
                                                 }
@@ -166,12 +194,39 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                         return new Promise((resolve) => {
                                                             if (value !== '') {
                                                                 fetch(`https://script.google.com/macros/s/AKfycbyBJA6m1I4CxRUPE_a5GuN2dDo8gS2Mxr1-qkm9MpCe0xSeo6o-G4cgsP-w8Mh98fua/exec?id=${selectedId}&sts=${value}`)
-                                                                    .then(response => response.json())
-                                                                    .then(data => {
-                                                                        // Handle the response data
-                                                                        resolve();
-                                                                      
-                                                                    });
+                                                               .then(response => {
+                                                        if (!response.ok) {
+                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                        }
+                                                        return response.json();
+                                                    })
+                                                    .then(data => {
+                                                        // Process the fetched data here
+                                                        // ...
+                                        
+                                                        // Trigger a SweetAlert2 success notification
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Successful',
+                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                        }).then(() => {
+                                                            location.reload();
+                                                        });
+                                        
+                                                        // Resolve the promise
+                                                        resolve();
+                                                    })
+                                                    .catch(error => {
+                                                        // Handle fetch or processing errors with SweetAlert2
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Error',
+                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                        });
+                                        
+                                                        // Reject the promise with the error
+                                                        reject(error);
+                                                    });
                                                             } else {
                                                                 resolve("Please select");
                                                             }
@@ -224,12 +279,39 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                         return new Promise((resolve) => {
                                                             if (value !== '') {
                                                                 fetch(`https://script.google.com/macros/s/AKfycbycQZ5goIDuxiTSnaA6NTGGY5sgmKfVgDAt1wDDXqxn6sGRfDnYODVHJH67BQd_TvADbw/exec?id=${selectedId}&sts=${value}`)
-                                                                    .then(response => response.json())
-                                                                    .then(data => {
-                                                                        // Handle the response data
-                                                                        resolve();
-                                                                        
-                                                                    });
+                                                               .then(response => {
+                                                        if (!response.ok) {
+                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                        }
+                                                        return response.json();
+                                                    })
+                                                    .then(data => {
+                                                        // Process the fetched data here
+                                                        // ...
+                                        
+                                                        // Trigger a SweetAlert2 success notification
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Successful',
+                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                        }).then(() => {
+                                                            location.reload();
+                                                        });
+                                        
+                                                        // Resolve the promise
+                                                        resolve();
+                                                    })
+                                                    .catch(error => {
+                                                        // Handle fetch or processing errors with SweetAlert2
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Error',
+                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                        });
+                                        
+                                                        // Reject the promise with the error
+                                                        reject(error);
+                                                    });
                                                             } else {
                                                                 resolve("Please select");
                                                             }
@@ -327,11 +409,39 @@ document.addEventListener("DOMContentLoaded", async function () {
                                             return new Promise((resolve) => {
                                                 if (value !== '') {
                                                     fetch(`https://script.google.com/macros/s/AKfycbzJb3Bsc5VNCvukDAdS_LKgTzSIQqIRO8H_882LAFJM0YJNnsyagUEa5QcuMn4yYHii/exec?id=${selectedId}&sts=${value}`)
-                                                        .then(response => response.json())
-                                                        .then(data >= {
-                                                           
+                                                    .then(response => {
+                                                        if (!response.ok) {
+                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                        }
+                                                        return response.json();
+                                                    })
+                                                    .then(data => {
+                                                        // Process the fetched data here
+                                                        // ...
+                                        
+                                                        // Trigger a SweetAlert2 success notification
+                                                        Swal.fire({
+                                                            icon: 'success',
+                                                            title: 'Successful',
+                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                        }).then(() => {
+                                                            location.reload();
                                                         });
-                                                    resolve();
+                                        
+                                                        // Resolve the promise
+                                                        resolve();
+                                                    })
+                                                    .catch(error => {
+                                                        // Handle fetch or processing errors with SweetAlert2
+                                                        Swal.fire({
+                                                            icon: 'error',
+                                                            title: 'Error',
+                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                        });
+                                        
+                                                        // Reject the promise with the error
+                                                        reject(error);
+                                                    });
                                                 } else {
                                                     resolve("Please select");
                                                 }
