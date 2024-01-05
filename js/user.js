@@ -112,13 +112,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                     fetch(`https://script.google.com/macros/s/AKfycbz0tjKWPT4kawZplDkWr67d0PncRzdWX6FyC2FK-x5_bzPO-D30xBAL-irqAUMnJSeg/exec?id=${selectedId}&sts=${value}`)
                                                         .then(response => response.json())
                                                         .then(data >= {
-                                                            Swal.fire({
-                                                                title: 'สำเร็จ!',
-                                                                text: 'การแก้ไขข้อมูลเสร็จสิ้น',
-                                                                icon: 'success'
-                                                            }).then(() => {
-                                                                location.reload();
-                                                            });
+                                                            
                                                         });
                                                     resolve();
                                                 } else {
@@ -176,13 +170,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                                     .then(data => {
                                                                         // Handle the response data
                                                                         resolve();
-                                                                        Swal.fire({
-                                                                title: 'สำเร็จ!',
-                                                                text: 'การแก้ไขข้อมูลเสร็จสิ้น',
-                                                                icon: 'success'
-                                                            }).then(() => {
-                                                                location.reload();
-                                                            });
+                                                                      
                                                                     });
                                                             } else {
                                                                 resolve("Please select");
@@ -240,13 +228,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                                     .then(data => {
                                                                         // Handle the response data
                                                                         resolve();
-                                                                        Swal.fire({
-                                                                title: 'สำเร็จ!',
-                                                                text: 'การแก้ไขข้อมูลเสร็จสิ้น',
-                                                                icon: 'success'
-                                                            }).then(() => {
-                                                                location.reload();
-                                                            });
+                                                                        
                                                                     });
                                                             } else {
                                                                 resolve("Please select");
@@ -305,13 +287,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                         //                                             .then(data => {
                         //                                                 // Handle the response data
                         //                                                 resolve();
-// Swal.fire({
-//                                                                 title: 'สำเร็จ!',
-//                                                                 text: 'การแก้ไขข้อมูลเสร็จสิ้น',
-//                                                                 icon: 'success'
-//                                                             }).then(() => {
-//                                                                 location.reload();
-//                                                             });
                         //                                             });
                         //                                     } else {
                         //                                         resolve("Please select");
@@ -354,13 +329,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                     fetch(`https://script.google.com/macros/s/AKfycbzJb3Bsc5VNCvukDAdS_LKgTzSIQqIRO8H_882LAFJM0YJNnsyagUEa5QcuMn4yYHii/exec?id=${selectedId}&sts=${value}`)
                                                         .then(response => response.json())
                                                         .then(data >= {
-                                                            Swal.fire({
-                                                                title: 'สำเร็จ!',
-                                                                text: 'การแก้ไขข้อมูลเสร็จสิ้น',
-                                                                icon: 'success'
-                                                            }).then(() => {
-                                                                location.reload();
-                                                            });
+                                                           
                                                         });
                                                     resolve();
                                                 } else {
