@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded',async function () {
                         
                     },
                     {
-                        text: 'อนุญาตตามช่วงวันที่',
+                        text: 'อนุญาตทั้งหมด',
                         action: function () {
                             var refArray = $('#dreportdata').DataTable().column(13, { search: 'applied' }).data().toArray()
                          //   console.log(refArray);
@@ -204,55 +204,55 @@ document.addEventListener('DOMContentLoaded',async function () {
 
                         }
                     },
-                    {
-                        text: 'อนุญาตทั้งหมด',
-                        action: function () {
-                            var refArray = $('#dreportdata').DataTable().column(10, { search: 'applied' }).data().toArray()
-                            console.log(refArray);
-                            var count = refArray.length;
-                            console.log('Number of elements in the array:', count);
+                    // {
+                    //     text: 'อนุญาตทั้งหมด(เดิม)',
+                    //     action: function () {
+                    //         var refArray = $('#dreportdata').DataTable().column(10, { search: 'applied' }).data().toArray()
+                    //         console.log(refArray);
+                    //         var count = refArray.length;
+                    //         console.log('Number of elements in the array:', count);
 
-                            Swal.fire({
-                                title: "คุณต้องการ.! อนุญาตทั้งหมดหรือไม่?",
-                                icon: "warning",
-                                // html: " จำนวน " + count + " รายการ",
-                                showCancelButton: true, // Show Cancel button
-                                confirmButtonText: "ตกลง", // Text for the Confirm button
-                                cancelButtonText: "ยกเลิก", // Text for the Cancel button
-                            })
-                                .then((result) => {
-                                    // Check if the user clicked "ตกลง"
-                                    if (result.isConfirmed) {
-                                        // Call the fetch function
-                                        fetch(`https://script.google.com/macros/s/AKfycbw6JUXHkUtaTlUbghOUkA2L4_hkGyLsxKzPfR4hTEV_tdSAMXwVhi-G0rKPwWz7NXi0iw/exec?id=${UUID}`)
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                // Process the data as needed
-                                               // console.log(data);
-                                                // Show a success SweetAlert notification
-                                                Swal.fire({
-                                                    title: "สำเร็จ!",
-                                                    text: "บันทึกข้อมูลเรียบร้อยแล้ว!",
-                                                    icon: "success"
-                                                  }).then(() => {
-                                                    location.reload();
-                                                  });
-                                            })
-                                            .catch(error => {
-                                                // Handle errors
-                                                console.error('Error during fetch:', error);
-                                                // Show an error SweetAlert notification
-                                                Swal.fire("เกิดข้อผิดพลาด!", "กรุณาลองใหม่อีกครั้ง", "error");
-                                            });
-                                    } else {
-                                        // User clicked "ยกเลิก"
-                                        // Handle the cancellation or perform any other action
-                                    }
-                                });
+                    //         Swal.fire({
+                    //             title: "คุณต้องการ.! อนุญาตทั้งหมดหรือไม่?",
+                    //             icon: "warning",
+                    //             // html: " จำนวน " + count + " รายการ",
+                    //             showCancelButton: true, // Show Cancel button
+                    //             confirmButtonText: "ตกลง", // Text for the Confirm button
+                    //             cancelButtonText: "ยกเลิก", // Text for the Cancel button
+                    //         })
+                    //             .then((result) => {
+                    //                 // Check if the user clicked "ตกลง"
+                    //                 if (result.isConfirmed) {
+                    //                     // Call the fetch function
+                    //                     fetch(`https://script.google.com/macros/s/AKfycbw6JUXHkUtaTlUbghOUkA2L4_hkGyLsxKzPfR4hTEV_tdSAMXwVhi-G0rKPwWz7NXi0iw/exec?id=${UUID}`)
+                    //                         .then(response => response.json())
+                    //                         .then(data => {
+                    //                             // Process the data as needed
+                    //                            // console.log(data);
+                    //                             // Show a success SweetAlert notification
+                    //                             Swal.fire({
+                    //                                 title: "สำเร็จ!",
+                    //                                 text: "บันทึกข้อมูลเรียบร้อยแล้ว!",
+                    //                                 icon: "success"
+                    //                               }).then(() => {
+                    //                                 location.reload();
+                    //                               });
+                    //                         })
+                    //                         .catch(error => {
+                    //                             // Handle errors
+                    //                             console.error('Error during fetch:', error);
+                    //                             // Show an error SweetAlert notification
+                    //                             Swal.fire("เกิดข้อผิดพลาด!", "กรุณาลองใหม่อีกครั้ง", "error");
+                    //                         });
+                    //                 } else {
+                    //                     // User clicked "ยกเลิก"
+                    //                     // Handle the cancellation or perform any other action
+                    //                 }
+                    //             });
 
-                        }
-                    }
-                    ,'excel', 'print'
+                    //     }
+                    // }
+                    'excel', 'print'
 
 
                 ] // button end
