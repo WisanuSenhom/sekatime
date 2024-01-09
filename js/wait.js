@@ -1,67 +1,17 @@
-$(document).ready(function () {
-    hideLoader()
-    var currentDate = new Date();
-    var yesterday = new Date(currentDate);
-    yesterday.setDate(currentDate.getDate() ); // set date
-
-    var formattedDate = yesterday.toISOString().split('T')[0]; // Get YYYY-MM-DD part
-    $("#startDate").val(formattedDate);
-    $("#endDate").val(formattedDate);
-});
-
-$("#startDate, #endDate").datepicker({
-    dateFormat: 'yy-mm-dd',
-    changeMonth: true,
-    changeYear: true,
-    showButtonPanel: true,
-    onClose: function (dateText, inst) {
-        $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
-    }
-});
-
-$("#dateRangeForm").submit(function (event) {
-    event.preventDefault(); // Prevent the form from submitting to the URL specified in the action attribute
-
-    // Get the start and end dates
-    var startDate = $("#startDate").datepicker("getDate");
-    var endDate = $("#endDate").datepicker("getDate");
-    var limit = $("#limit").val();
-
-
-    // Check if either start or end date is empty
-    if (!startDate || !endDate) {
-        alert("Please select both a start date and an end date");
-        return; // Stop further processing
-    }
-
-    // Check if the start date is less than or equal to the end date
-    if (startDate <= endDate) {
-        // Format the start and end dates in "yymmdd" format
-        var sDate = $.datepicker.formatDate("yymmdd", startDate);
-        var eDate = $.datepicker.formatDate("yymmdd", endDate);
-
-        // Call the getdata function with the formatted dates
-        fetchData(sDate, eDate, limit);
-
-    } else {
-        alert("Please select a start date that is less than or equal to the end date");
-    }
-});
-
 
 // Function to fetch data asynchronously
-async function fetchData(sDate, eDate, limit) {
+document.addEventListener('DOMContentLoaded',async function () {
     var UUID = localStorage.getItem("uuid");
     // console.log(sDate);
     // console.log(eDate);
     // console.log(UUID);
     // console.log(limit);
-    showLoader()
+    showLoader();
     // Replace the URL with your actual API endpoint
     var apiUrl = 'https://script.google.com/macros/s/AKfycbyQoVExSVyf6F2lWUCq-868Od1RvnOp2MNE4H264oPmG4_YXebrIrW9RkLWyP2QdoV4/exec';
 
     // Construct the query parameters based on your requirements
-    var queryParams = `?sdate=${sDate}&edate=${eDate}&limit=${limit}&id=${UUID}`;
+    var queryParams = `?id=${UUID}`;
 
     // Make a GET request using Fetch API
     await fetch(apiUrl + queryParams)
@@ -93,7 +43,7 @@ async function fetchData(sDate, eDate, limit) {
             })
             // console.log(datartb);
             reporttb.innerHTML = datartb;
-            hideLoader()
+            hideLoader();
             $('#dreportdata').DataTable({
                 "data": data.tst,
                 "columns": [
@@ -309,7 +259,7 @@ async function fetchData(sDate, eDate, limit) {
             });
         });
 
-}
+});
 
 
 
@@ -323,3 +273,4 @@ function showLoader() {
 function hideLoader() {
     loader.style.display = 'none'; // ซ่อน loader
 }
+
