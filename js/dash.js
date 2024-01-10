@@ -152,6 +152,63 @@ function sheet1() {
     }
 }
 
+
+function looker() {
+    var role = localStorage.getItem("role");
+    var mainsub = localStorage.getItem("mainsub");
+
+    var uuid = localStorage.getItem("uuid");
+    var cid = localStorage.getItem("cidhash");
+    var ggform = `https://docs.google.com/forms/d/e/1FAIpQLSe6rQO7Za36aVclMHeOqmTvz96JpYYmSPQrnb0wT0za85CbRw/viewform?usp=pp_url&entry.2080721284=${uuid}&entry.830072577=${cid}&entry.359101490=SekaTime`;
+
+    if (role !== "user" && role !== null && role !== undefined) {
+        Swal.fire({
+            title: 'ดำเนินการต่อ',
+           // text: 'หากไม่สามารถเข้าถึงข้อมูลได้ ให้แจ้ง gmail เพื่อเพิ่มสิทธิ์ในการเข้าถึงข้อมูล',
+            icon: 'success',
+            confirmButtonText: 'ตกลง',
+         //   footer: `<a href="${ggform}" target="_blank">แจ้ง G-Mail</a>`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                if (mainsub == 'สสอ.เซกา') {
+                    window.open('https://lookerstudio.google.com/reporting/ff395d88-d610-4664-9625-d867d1b00304', '_blank');
+                } else if (mainsub == 'สสจ.บึงกาฬ') {
+                    window.open('https://lookerstudio.google.com/reporting/610860af-4711-4ba0-8ebd-f74bf0e819b9', '_blank');
+                // } else if (mainsub == 'สสอ.บึงกาฬ') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                // } else if (mainsub == 'สสอ.พรเจริญ') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                // } else if (mainsub == 'สสอ.โซ่พิสัย') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                // } else if (mainsub == 'สสอ.ปากคาด') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                // } else if (mainsub == 'สสอ.บึงโขงหลง') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                // } else if (mainsub == 'สสอ.ศรีวิไล') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                // } else if (mainsub == 'สสอ.บุ่งคล้า') {
+                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                } else {
+                    // Display a Swal.fire notification for unknown code values
+                    Swal.fire({
+                        title: 'แจ้งเตือน',
+                        text: 'ไม่พบลิงค์ที่เกี่ยวข้องกับหน่วยงานของท่าน',
+                        icon: 'warning',
+                        confirmButtonText: 'ตกลง'
+                    });
+                }
+            }
+        });
+    } else {
+        Swal.fire({
+            title: 'ปฏิเสธ',
+            text: 'ไม่อนุญาตให้เข้าถึงข้อมูล เฉพาะผู้ดูแลระบบ หัวหน้าหน่วยงาน ผู้อำนวยการ และผู้บริหารเท่านั้น',
+            icon: 'error',
+            confirmButtonText: 'ตกลง'
+        });
+    }
+}
+
 function dashboardlooker() {
     Swal.fire({
         title: 'Oops...',
