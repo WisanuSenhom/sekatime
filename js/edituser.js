@@ -523,7 +523,7 @@ function craetetoken(){
         cancelButtonText: 'ยกเลิก',
     }).then((result) => {
         if (result.isConfirmed) {
-            window.open('https://wisanusenhom.github.io/sekatime/', '_blank');
+            window.open('https://wisanusenhom.github.io/nu/token.html', '_blank');
          } else if (result.dismiss === Swal.DismissReason.cancel) {
             Swal.fire('การดำเนินการถูกยกเลิก', '', 'info');
         }
