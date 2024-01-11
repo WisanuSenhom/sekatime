@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         .then(response => response.json())
         .then(data => {
             // ปิด css โหลด
-       
+
             hideLoader()
             const usertb = document.getElementById("tbody");
             let datatb = '';
@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                     },
                     "data": data.user,
                     "columns": [
-                        { "data": 'status'},
-                        { 
+                        { "data": 'status' },
+                        {
                             "data": 'upic',
                             "render": function (data, type, full, meta) {
                                 // Assuming 'upic' contains the URL or path to the image
@@ -71,11 +71,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                         { "data": 'boss' },
                         { "data": 'ceo' },
                         { "data": 'docno' },
-                        
+
                     ],
                     "processing": true,
                     "responsive": true,
-                    "order": [[0, 'asc'], [2, 'asc'],[5, 'asc'], [6, 'asc'],[4, 'asc']],
+                    "order": [[0, 'asc'], [2, 'asc'], [5, 'asc'], [6, 'asc'], [4, 'asc']],
                     "colReorder": true,
                     "fixedColumns": true,
                     "fixedHeader": true,
@@ -87,10 +87,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                         const statusClass = data.status === 'deactive' ? 'status pending' : data.status === 'active' ? 'status completed' : 'primary';
                         statusCell.html(`<span class="${statusClass}">${data.status}</span>`);
                     },
-             
+
                     "buttons": [
                         {
-                            text: 'กำหนดสถานะ',
+                            text: 'กำหนด สถานะ',
                             action: async function () {
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
@@ -110,39 +110,39 @@ document.addEventListener("DOMContentLoaded", async function () {
                                             return new Promise((resolve) => {
                                                 if (value !== '') {
                                                     fetch(`https://script.google.com/macros/s/AKfycbz0tjKWPT4kawZplDkWr67d0PncRzdWX6FyC2FK-x5_bzPO-D30xBAL-irqAUMnJSeg/exec?id=${selectedId}&sts=${value}`)
-                                                .then(response => {
-                                                        if (!response.ok) {
-                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
-                                                        }
-                                                        return response.json();
-                                                    })
-                                                    .then(data => {
-                                                        // Process the fetched data here
-                                                        // ...
-                                        
-                                                        // Trigger a SweetAlert2 success notification
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Successful',
-                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
-                                                        }).then(() => {
-                                                            location.reload();
+                                                        .then(response => {
+                                                            if (!response.ok) {
+                                                                throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                            }
+                                                            return response.json();
+                                                        })
+                                                        .then(data => {
+                                                            // Process the fetched data here
+                                                            // ...
+
+                                                            // Trigger a SweetAlert2 success notification
+                                                            Swal.fire({
+                                                                icon: 'success',
+                                                                title: 'Successful',
+                                                                text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                            }).then(() => {
+                                                                location.reload();
+                                                            });
+
+                                                            // Resolve the promise
+                                                            resolve();
+                                                        })
+                                                        .catch(error => {
+                                                            // Handle fetch or processing errors with SweetAlert2
+                                                            Swal.fire({
+                                                                icon: 'error',
+                                                                title: 'Error',
+                                                                text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                            });
+
+                                                            // Reject the promise with the error
+                                                            reject(error);
                                                         });
-                                        
-                                                        // Resolve the promise
-                                                        resolve();
-                                                    })
-                                                    .catch(error => {
-                                                        // Handle fetch or processing errors with SweetAlert2
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Error',
-                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
-                                                        });
-                                        
-                                                        // Reject the promise with the error
-                                                        reject(error);
-                                                    });
                                                 } else {
                                                     resolve("Please select");
                                                 }
@@ -157,181 +157,197 @@ document.addEventListener("DOMContentLoaded", async function () {
                                 } else {
                                     Swal.fire({
                                         icon: "error",
-                                        title: "Oops...",
-                                        text: "No row selected!"
+                                        title: "Oops...No row selected!",
+                                        text: "โปรดเลือกรายการที่ต้องการกำหนด/แก้ไขสถานะ"
                                     });
                                 }
                             }
                         },
                         {
-                            text: 'กำหนดสิทธิ์',
+                            text: 'กำหนด สิทธิ์',
                             action: async function () {
+                                // Get selected rows from the 'userdata' DataTable
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
                                 if (selectedRows.length > 0) {
-                                    var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
+                                    // Extract the ID of the first selected row
+                                    var selectedId = selectedRows[0].id;
 
-                                    if (selectedRows.length > 0) {
-                                        var selectedId = selectedRows[0].id;
+                                    try {
+                                        // Fetch user roles from the API
+                                        const response = await fetch(`https://script.google.com/macros/s/AKfycbxRvUvrua5NNeRskiXrcVF4zI1NNgJFRiFaB3a4jIlpB4Mv6NCHoxo_oBKZIuM0M1Zo/exec?id=${userId}`);
+                                        if (!response.ok) {
+                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                        }
 
-                                        // Fetch options from API
-                                     await   fetch(`https://script.google.com/macros/s/AKfycbxRvUvrua5NNeRskiXrcVF4zI1NNgJFRiFaB3a4jIlpB4Mv6NCHoxo_oBKZIuM0M1Zo/exec?id=${userId}`)
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                // Extract value and label from the fetched data
-                                                const options = {};
-                                                data.role.forEach(item => {
-                                                    options[item.id] = item.name;
-                                                });
+                                        const data = await response.json();
 
-                                                Swal.fire({
-                                                    title: "Select ID : " + selectedId,
-                                                    input: "select",
-                                                    inputOptions: options,
-                                                    inputPlaceholder: "เลือกสิทธิ์",
-                                                    showCancelButton: true,
-                                                    inputValidator: (value) => {
-                                                        return new Promise((resolve) => {
-                                                            if (value !== '') {
-                                                                fetch(`https://script.google.com/macros/s/AKfycbyBJA6m1I4CxRUPE_a5GuN2dDo8gS2Mxr1-qkm9MpCe0xSeo6o-G4cgsP-w8Mh98fua/exec?id=${selectedId}&sts=${value}`)
-                                                               .then(response => {
-                                                        if (!response.ok) {
-                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
-                                                        }
-                                                        return response.json();
-                                                    })
-                                                    .then(data => {
-                                                        // Process the fetched data here
-                                                        // ...
-                                        
-                                                        // Trigger a SweetAlert2 success notification
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Successful',
-                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
-                                                        }).then(() => {
-                                                            location.reload();
-                                                        });
-                                        
-                                                        // Resolve the promise
-                                                        resolve();
-                                                    })
-                                                    .catch(error => {
-                                                        // Handle fetch or processing errors with SweetAlert2
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Error',
-                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
-                                                        });
-                                        
-                                                        // Reject the promise with the error
-                                                        reject(error);
-                                                    });
-                                                            } else {
-                                                                resolve("Please select");
-                                                            }
-                                                        });
+                                        // Extract role options from the fetched data
+                                        const options = {};
+                                        data.role.forEach(item => {
+                                            options[item.id] = item.name;
+                                        });
+
+                                        // Show SweetAlert2 modal for role selection
+                                        const result = await Swal.fire({
+                                            title: "Select ID: " + selectedId,
+                                            input: "select",
+                                            inputOptions: options,
+                                            inputPlaceholder: "เลือกสิทธิ์",
+                                            showCancelButton: true,
+                                            inputValidator: (value) => {
+                                                return new Promise((resolve) => {
+                                                    if (value !== '') {
+                                                        // Update user's permissions using the selected role
+                                                        fetch(`https://script.google.com/macros/s/AKfycbyBJA6m1I4CxRUPE_a5GuN2dDo8gS2Mxr1-qkm9MpCe0xSeo6o-G4cgsP-w8Mh98fua/exec?id=${selectedId}&sts=${value}`)
+                                                            .then(response => {
+                                                                if (!response.ok) {
+                                                                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                                }
+                                                                return response.json();
+                                                            })
+                                                            .then(() => {
+                                                                // Show success message and reload the page
+                                                                Swal.fire({
+                                                                    icon: 'success',
+                                                                    title: 'Successful',
+                                                                    text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                                }).then(() => {
+                                                                    location.reload();
+                                                                });
+
+                                                                resolve();
+                                                            })
+                                                            .catch(error => {
+                                                                // Show error message
+                                                                Swal.fire({
+                                                                    icon: 'error',
+                                                                    title: 'Error',
+                                                                    text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                                });
+
+                                                                resolve();
+                                                            });
+                                                    } else {
+                                                        resolve("Please select");
                                                     }
                                                 });
-                                            })
-                                            .catch(error => {
-                                                console.error('Error fetching data:', error);
+                                            }
+                                        });
+
+                                        // Handle cancel button or dismiss event
+                                        if (result.dismiss === Swal.DismissReason.cancel) {
+                                            Swal.fire({
+                                                icon: 'info',
+                                                title: 'Cancelled',
+                                                text: 'การกำหนดสิทธิ์ถูกยกเลิก.'
                                             });
-                                    } else {
+                                        }
+                                    } catch (error) {
+                                        // Show error message for fetch failure
                                         Swal.fire({
-                                            icon: "error",
-                                            title: "Oops...",
-                                            text: "No row selected!"
+                                            icon: 'error',
+                                            title: 'Error',
+                                            text: `เกิดข้อผิดพลาดในการดึงข้อมูล: ${error.message}`
                                         });
                                     }
+                                } else {
+                                    // Show error message if no row is selected
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...No row selected!",
+                                        text: "โปรดเลือกรายการที่ต้องการกำหนด/แก้ไขสิทธิ์"
+                                    });
                                 }
                             }
-
                         },
                         {
                             text: 'กำหนด หัวหน้า/ผอ./ผู้รับรอง/ผู้บริหาร/ผู้ช่วย',
                             action: async function () {
+                                // Get selected rows from DataTable
                                 var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
 
                                 if (selectedRows.length > 0) {
-                                    var selectedRows = $('#userdata').DataTable().rows({ selected: true }).data();
+                                    // Extract the ID of the first selected row
+                                    var selectedId = selectedRows[0].id;
 
-                                    if (selectedRows.length > 0) {
-                                        var selectedId = selectedRows[0].id;
-
+                                    try {
                                         // Fetch options from API
-                                     await   fetch(`https://script.google.com/macros/s/AKfycbzlanx_NXl5qy1mlvQP6oMl6zElUxDJ9nLUiZEqIHO0RKP7OcxkHKo5n_XUb-5UEHRN/exec?xmain=${xmain}`)
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                // Extract value and label from the fetched data
-                                                const options = {};
-                                                data.role.forEach(itemx => {
-                                                    options[itemx.id] = itemx.name;
-                                                });
+                                        const response = await fetch(`https://script.google.com/macros/s/AKfycbzlanx_NXl5qy1mlvQP6oMl6zElUxDJ9nLUiZEqIHO0RKP7OcxkHKo5n_XUb-5UEHRN/exec?xmain=${xmain}`);
 
-                                                Swal.fire({
-                                                    title: "Select ID : " + selectedId,
-                                                    input: "select",
-                                                    inputOptions: options,
-                                                    inputPlaceholder: "เลือกหัวหน้า",
-                                                    showCancelButton: true,
-                                                    inputValidator: (value) => {
-                                                        return new Promise((resolve) => {
-                                                            if (value !== '') {
-                                                                fetch(`https://script.google.com/macros/s/AKfycbycQZ5goIDuxiTSnaA6NTGGY5sgmKfVgDAt1wDDXqxn6sGRfDnYODVHJH67BQd_TvADbw/exec?id=${selectedId}&sts=${value}`)
-                                                               .then(response => {
-                                                        if (!response.ok) {
-                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
-                                                        }
-                                                        return response.json();
-                                                    })
-                                                    .then(data => {
-                                                        // Process the fetched data here
-                                                        // ...
-                                        
-                                                        // Trigger a SweetAlert2 success notification
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Successful',
-                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
-                                                        }).then(() => {
-                                                            location.reload();
-                                                        });
-                                        
-                                                        // Resolve the promise
-                                                        resolve();
-                                                    })
-                                                    .catch(error => {
-                                                        // Handle fetch or processing errors with SweetAlert2
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Error',
-                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
-                                                        });
-                                        
-                                                        // Reject the promise with the error
-                                                        reject(error);
-                                                    });
-                                                            } else {
-                                                                resolve("Please select");
-                                                            }
-                                                        });
+                                        if (!response.ok) {
+                                            throw new Error(`Network response was not ok: ${response.statusText}`);
+                                        }
+
+                                        const data = await response.json();
+
+                                        // Extract value and label from the fetched data
+                                        const options = {};
+                                        data.role.forEach(itemx => {
+                                            options[itemx.id] = itemx.name;
+                                        });
+
+                                        // Show Swal (SweetAlert2) modal for user selection
+                                        const selectedValue = await Swal.fire({
+                                            title: `Select ID: ${selectedId}`,
+                                            input: "select",
+                                            inputOptions: options,
+                                            inputPlaceholder: "เลือกหัวหน้า",
+                                            showCancelButton: true,
+                                            inputValidator: (value) => {
+                                                return new Promise((resolve) => {
+                                                    if (value !== '') {
+                                                        // Make API call to update selected data
+                                                        fetch(`https://script.google.com/macros/s/AKfycbycQZ5goIDuxiTSnaA6NTGGY5sgmKfVgDAt1wDDXqxn6sGRfDnYODVHJH67BQd_TvADbw/exec?id=${selectedId}&sts=${value}`)
+                                                            .then(response => {
+                                                                if (!response.ok) {
+                                                                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                                }
+                                                                return response.json();
+                                                            })
+                                                            .then(() => {
+                                                                // Success notification
+                                                                Swal.fire({
+                                                                    icon: 'success',
+                                                                    title: 'Successful',
+                                                                    text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                                }).then(() => {
+                                                                    location.reload();
+                                                                });
+
+                                                                // Resolve the promise
+                                                                resolve();
+                                                            })
+                                                            .catch(error => {
+                                                                // Error notification
+                                                                Swal.fire({
+                                                                    icon: 'error',
+                                                                    title: 'Error',
+                                                                    text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                                });
+
+                                                                // Reject the promise with the error
+                                                                reject(error);
+                                                            });
+                                                    } else {
+                                                        resolve("Please select");
                                                     }
                                                 });
-                                            })
-                                            .catch(error => {
-                                                console.error('Error fetching data:', error);
-                                            });
-                                    } else {
-                                        Swal.fire({
-                                            icon: "error",
-                                            title: "Oops...",
-                                            text: "No row selected!"
+                                            }
                                         });
+                                    } catch (error) {
+                                        // Handle fetch errors
+                                        console.error('Error fetching data:', error);
                                     }
+                                } else {
+                                    // No row selected error
+                                    Swal.fire({
+                                        icon: "error",
+                                        title: "Oops...No row selected!",
+                                        text: "โปรดเลือกรายการที่ต้องการกำหนด/แก้ไข ผู้รับรอง"
+                                    });
                                 }
                             }
-
                         },
                         // ระดับเหนือขึ้นไป
                         // {
@@ -398,74 +414,75 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                                 if (selectedRows.length > 0) {
                                     var selectedId = selectedRows[0].id;
-                                    //   alert('Selected ID: ' + selectedId);
+
                                     const { value: docno } = await Swal.fire({
-                                        title: "Select ID : " + selectedId,
+                                        title: "Select ID: " + selectedId,
                                         input: "text",
                                         inputLabel: "กรอกเลขที่หนังสือ",
                                         inputPlaceholder: "บก xxxx",
                                         showCancelButton: true,
                                         inputValidator: (value) => {
                                             return new Promise((resolve) => {
-                                                if (value !== '') {
-                                                    fetch(`https://script.google.com/macros/s/AKfycbzJb3Bsc5VNCvukDAdS_LKgTzSIQqIRO8H_882LAFJM0YJNnsyagUEa5QcuMn4yYHii/exec?id=${selectedId}&sts=${value}`)
-                                                    .then(response => {
-                                                        if (!response.ok) {
-                                                            throw new Error(`Network response was not ok: ${response.statusText}`);
-                                                        }
-                                                        return response.json();
-                                                    })
-                                                    .then(data => {
-                                                        // Process the fetched data here
-                                                        // ...
-                                        
-                                                        // Trigger a SweetAlert2 success notification
-                                                        Swal.fire({
-                                                            icon: 'success',
-                                                            title: 'Successful',
-                                                            text: 'การแก้ไขข้อมูลสำเร็จ.'
-                                                        }).then(() => {
-                                                            location.reload();
-                                                        });
-                                        
-                                                        // Resolve the promise
-                                                        resolve();
-                                                    })
-                                                    .catch(error => {
-                                                        // Handle fetch or processing errors with SweetAlert2
-                                                        Swal.fire({
-                                                            icon: 'error',
-                                                            title: 'Error',
-                                                            text: `เกิดข้อผิดพลาด: ${error.message}`
-                                                        });
-                                        
-                                                        // Reject the promise with the error
-                                                        reject(error);
-                                                    });
-                                                } else {
-                                                    resolve("Please select");
-                                                }
+                                                if (value.trim() !== '') {
+                                                    fetch(`https://script.google.com/macros/s/AKfycbzJb3Bsc5VNCvukDAdS_LKgTzSIQqIRO8H_882LAFJM0YJNnsyagUEa5QcuMn4yYHii/exec?id=${selectedId}&sts=${value.trim()}`)
+                                                        .then(response => {
+                                                            if (!response.ok) {
+                                                                throw new Error(`Network response was not ok: ${response.statusText}`);
+                                                            }
+                                                            return response.json();
+                                                        })
+                                                        .then(data => {
+                                                            // Process the fetched data here
+                                                            // ...
 
+                                                            // Trigger a SweetAlert2 success notification
+                                                            Swal.fire({
+                                                                icon: 'success',
+                                                                title: 'Successful',
+                                                                text: 'การแก้ไขข้อมูลสำเร็จ.'
+                                                            }).then(() => {
+                                                                location.reload();
+                                                            });
+
+                                                            // Resolve the promise
+                                                            resolve();
+                                                        })
+                                                        .catch(error => {
+                                                            // Handle fetch or processing errors with SweetAlert2
+                                                            Swal.fire({
+                                                                icon: 'error',
+                                                                title: 'Error',
+                                                                text: `เกิดข้อผิดพลาด: ${error.message}`
+                                                            });
+
+                                                            // Resolve the promise even if there is an error
+                                                            resolve();
+                                                        });
+                                                } else {
+                                                    resolve("Please enter a valid document number");
+                                                }
                                             });
                                         }
                                     });
+
                                     if (docno) {
                                         Swal.fire(`You selected: ${docno}`);
-                                    };
-
+                                    }
                                 } else {
                                     Swal.fire({
                                         icon: "error",
-                                        title: "Oops...",
-                                        text: "No row selected!"
+                                        title: "Oops...No row selected!",
+                                        text: "เลือกรายการที่ต้องกำหนด/แก้ไขเลขที่หนังสือ"
                                     });
                                 }
                             }
-                        }, 'excel', 'print'
+                        }
+
+                        , 'excel', 'print'
                         // สิ้นสุดปุ่ม
                     ],
                     "select": true,
-                  //  "pageLength": 20
+                    //  "pageLength": 20
                 });
 
             })
