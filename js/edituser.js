@@ -512,3 +512,19 @@ function sentnotify(buttonnotify,tokenValue) {
         }
     });
 }
+
+function craetetoken(){
+    Swal.fire({
+        title: 'การดำเนินการ ?',
+         text: 'กดตกลงเพื่อดำเนินการต่อ.',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.open('https://wisanusenhom.github.io/nu/token.html', '_blank');
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+         }
+      });      
+}
