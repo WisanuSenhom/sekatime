@@ -161,7 +161,7 @@ function looker() {
     var cid = localStorage.getItem("cidhash");
     var ggform = `https://docs.google.com/forms/d/e/1FAIpQLSe6rQO7Za36aVclMHeOqmTvz96JpYYmSPQrnb0wT0za85CbRw/viewform?usp=pp_url&entry.2080721284=${uuid}&entry.830072577=${cid}&entry.359101490=SekaTime`;
 
-    if (role !== "user" && role !== null && role !== undefined) {
+    if (role !== null && role !== undefined) {
         Swal.fire({
             title: 'ดำเนินการต่อ',
            // text: 'หากไม่สามารถเข้าถึงข้อมูลได้ ให้แจ้ง gmail เพื่อเพิ่มสิทธิ์ในการเข้าถึงข้อมูล',
