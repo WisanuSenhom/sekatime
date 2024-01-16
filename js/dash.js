@@ -116,7 +116,7 @@ function sheet1() {
                 if (mainsub == 'สสอ.เซกา') {
                     window.open('https://docs.google.com/spreadsheets/d/1PDnuSZKZl-kIcLwsLGKKkd0QSPKfljY9dfHBaf2InCI/edit', '_blank');
                 } else if (mainsub == 'สสจ.บึงกาฬ') {
-                    window.open('https://docs.google.com/spreadsheets/d/1t4VN2NPgykuPH_xWfUqhNhH1FyvYUcA64o0wBu-hjQ8/edit', '_blank');
+                    window.open('https://docs.google.com/spreadsheets/d/18m82mO9zpcI9EXSAwqEqClPABrxpjRPz2UGSZ9G7qZ4/edit', '_blank');
                 // } else if (mainsub == 'สสอ.บึงกาฬ') {
                 //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
                 // } else if (mainsub == 'สสอ.พรเจริญ') {
