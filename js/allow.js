@@ -51,17 +51,23 @@ $("#dateRangeForm").submit(function (event) {
 
 // Function to fetch data asynchronously
 async function fetchData(sDate, eDate, limit) {
-    var UUID = localStorage.getItem("uuid");
+    // var UUID = localStorage.getItem("uuid");
     // console.log(sDate);
     // console.log(eDate);
     // console.log(UUID);
     // console.log(limit);
+    const xmain = localStorage.getItem("mainsub");
+    const xsub = localStorage.getItem("office");
+    const db = localStorage.getItem("db1");
+    const adm = localStorage.getItem("role");
+    const cid = localStorage.getItem("cidhash");
+    
     showLoader()
     // Replace the URL with your actual API endpoint
     var apiUrl = 'https://script.google.com/macros/s/AKfycbzOv1h0POd-y6d97fe1ykdh0Ze_xumkMVawG8dfBNNpYwSBteHnI1QKzlAbMyC3BT3aqw/exec';
 
     // Construct the query parameters based on your requirements
-    var queryParams = `?sdate=${sDate}&edate=${eDate}&limit=${limit}&id=${UUID}`;
+    var queryParams = `?sdate=${sDate}&edate=${eDate}&limit=${limit}&cid=${cid}&xmain=${xmain}&xsub=${xsub}&adm=${adm}&db=${db}`;
 
     // Make a GET request using Fetch API
     await fetch(apiUrl + queryParams)
@@ -76,7 +82,7 @@ async function fetchData(sDate, eDate, limit) {
                 <td>${tst.day}</td>
                 <td>${tst.datein}</td>
                 <td>${tst.name}</td>
-                <td>${tst.position}</td>
+                <td>${tst.job}</td>
                 <td>${tst.mainname}</td>
                 <td>${tst.subname}</td>
                 <td>${tst.typein}</td>
@@ -109,7 +115,7 @@ async function fetchData(sDate, eDate, limit) {
                     { "data": 'day' },
                     { "data": 'datein' },
                     { "data": 'name' },
-                    { "data": 'position' },
+                    { "data": 'job' },
                     { "data": 'mainname' },
                     { "data": 'subname' },
                     { "data": 'typein' },
@@ -209,7 +215,7 @@ async function fetchData(sDate, eDate, limit) {
                 doc.text("เรียน  หัวหน้า/ผู้อำนวยการ/ผู้บริหาร " + rowData[0].subname + " " + rowData[0].mainname, 20, 52);
 
                 doc.text("ข้าพเจ้า " + rowData[0].name, 40, 60);
-                doc.text("ตำแหน่ง " + rowData[0].position, 110, 60);
+                doc.text("ตำแหน่ง " + rowData[0].job, 110, 60);
 
                 doc.text("ไม่สามารถลงเวลาปฏิบัติงาน  ในระบบลงเวลาออนไลน์ได้ตามเวลาจริง เนื่องจาก", 20, 67);
                 doc.text(rowData[0].notein, 137, 67);
@@ -222,7 +228,7 @@ async function fetchData(sDate, eDate, limit) {
 
                 doc.text("จึงเรียนมาเพื่อโปรดทราบและพิจารณารับรองเวลาการปฏิบัติงาน ", 40, 100);
                 doc.text(rowData[0].name, 75, 107);
-                doc.text(rowData[0].position, 70, 114);
+                doc.text(rowData[0].job, 70, 114);
                 doc.text(rowData[0].reqdate + "," + rowData[0].reqtime, 73, 121);
 
                 doc.text("อนุญาตให้ลงเวลาการปฏิบัติงานได้", 110, 140);
