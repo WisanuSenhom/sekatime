@@ -51,17 +51,17 @@ $("#dateRangeForm").submit(function (event) {
 
 // Function to fetch data asynchronously
 async function fetchData(sDate, eDate, limit) {
-    var UUID = localStorage.getItem("uuid");
-    // console.log(sDate);
-    // console.log(eDate);
-    // console.log(UUID);
-    // console.log(limit);
+    const xmain = localStorage.getItem("mainsub");
+    const xsub = localStorage.getItem("office");
+    const db = localStorage.getItem("db1");
+    const adm = localStorage.getItem("role");
+    const cid = localStorage.getItem("cidhash");
     showLoader()
     // Replace the URL with your actual API endpoint
-    var apiUrl = 'https://script.google.com/macros/s/AKfycbxOflx3eahfY5m-WiU6qcPS6Bd3nCVmF2VlSUOf3Evg2LywG3d8dc2n2XbYsk94Yqxh/exec';
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbwQumXiT60GPOriFA0OXuz2oBWQu55Hz0ZCdLw6ifPyeUEUdqfuhDxIm_8lI6qMY6F-uA/exec';
 
     // Construct the query parameters based on your requirements
-    var queryParams = `?sdate=${sDate}&edate=${eDate}&limit=${limit}&id=${UUID}`;
+    var queryParams = `?sdate=${sDate}&edate=${eDate}&limit=${limit}&cid=${cid}&xmain=${xmain}&xsub=${xsub}&adm=${adm}&db=${db}`;
 
     // Make a GET request using Fetch API
     await fetch(apiUrl + queryParams)
@@ -83,10 +83,20 @@ async function fetchData(sDate, eDate, limit) {
                 <td>${tst.timeout}</td>
                 <td>${tst.disout}</td>
                 <td>${tst.notein}</td>
-           
+
+                <td>${tst.request}</td> 
+                <td>${tst.reqdate}</td>   
+                <td>${tst.reqtime}</td> 
+
+                <td>${tst.permitdate}</td> 
+                <td>${tst.permittime}</td>       
+                <td>${tst.permitname}</td>       
+                <td>${tst.permit_note}</td>    
+        
+
                 <td>${tst.verified}</td>
                 <td>${tst.verifiedname}</td>
-                
+                <td>${tst.verified_note}</td>
                 <td>${tst.verifieddate}</td>
                 <td>${tst.verifiedtime}</td>
 
@@ -110,10 +120,19 @@ async function fetchData(sDate, eDate, limit) {
                     { "data": 'timeout' },
                     { "data": 'disout' },
                     { "data": 'notein' },
+
+                    { "data": 'request' },
+                    { "data": 'reqdate' },
+                    { "data": 'reqtime' },
+
+                    { "data": 'permitdate' },
+                    { "data": 'permittime' },
+                    { "data": 'permitname' },
+                    { "data": 'permit_note' },
             
                     { "data": 'verified' },
                     { "data": 'verifiedname' },
-                    // { "data": 'verified_note' },
+                    { "data": 'verified_note' },
                     { "data": 'verifieddate' },
                     { "data": 'verifiedtime' },
                     { "data": 'ref' }
