@@ -30,6 +30,20 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error('Error fetching data:', error);
             // Handle fetch errors here
         });
+// เรียกรายงานลงเวลาประจำเดือน
+// รับวันที่ปัจจุบัน
+var currentDate = new Date();
+
+// ดึงปีและเดือน
+var year = currentDate.getFullYear();
+var month = currentDate.getMonth() + 1; // เดือนเริ่มต้นที่ 0 (มกราคม) ดังนั้นต้องเพิ่ม 1
+
+// รูปแบบ yyyymm
+var formattedDate = year.toString() + (month < 10 ? '0' : '') + month.toString();
+
+//console.log(formattedDate); // ผลลัพธ์เช่น "202402" (สำหรับเดือนกุมภาพันธ์ 2024)
+fetchData(formattedDate);
+    
 });
 
 
@@ -240,3 +254,115 @@ function showSwal() {
       }
     });
   }
+
+
+async function fetchData(formattedDate) {
+    const cid = localStorage.getItem("cidhash");
+    const db1 = localStorage.getItem("db1");
+    // Replace the URL with your actual API endpoint
+    var apiUrl = 'https://script.google.com/macros/s/AKfycbwjLcT7GFTETdwRt_GfU6j-8poTK6_t400RPLa4cMY72Ih3EYAWQIDyFQV0et7lMQG2LQ/exec';
+
+    // Construct the query parameters based on your requirements
+    var queryParams = `?startdate=${formattedDate}&cid=${cid}&db=${db1}`;
+
+    // Make a GET request using Fetch API
+    await fetch(apiUrl + queryParams)
+        .then(response => response.json())
+        .then(data => {
+            //  console.log(data);
+            const reporttb = document.getElementById("reportdata");
+            reporttb.innerHTML ="";
+            let datartb = '';
+            data.tst.forEach(function (tst) {
+                datartb += `<tr>
+                <td>${tst.day}</td>
+                <td>${tst.datein}</td>
+                <td>${tst.name}</td>
+                <td>${tst.subname}</td>
+                <td>${tst.typein}</td>
+                <td>${tst.timein}</td>
+                <td>${tst.disin}</td>
+                <td>${tst.timeout}</td>
+                <td>${tst.disout}</td>
+                <td>${tst.notein}</td>
+
+                <td>${tst.request}</td> 
+                <td>${tst.reqdate}</td>   
+                <td>${tst.reqtime}</td> 
+
+                <td>${tst.permitdate}</td> 
+                <td>${tst.permittime}</td>       
+                <td>${tst.permitname}</td>       
+                <td>${tst.permit_note}</td>    
+        
+
+                <td>${tst.verified}</td>
+                <td>${tst.verifiedname}</td>
+                <td>${tst.verified_note}</td>
+                <td>${tst.verifieddate}</td>
+                <td>${tst.verifiedtime}</td>
+
+                <td>${tst.ref}</td>
+          
+            </tr>`
+            })
+            // console.log(datartb);
+            reporttb.innerHTML = datartb;
+            $('#dreportdata').DataTable({
+                "data": data.tst,
+                "columns": [
+                    { "data": 'day' },
+                    { "data": 'datein' },
+                    { "data": 'name' },
+                    { "data": 'subname' },
+                    { "data": 'typein' },
+                    { "data": 'timein' },
+                    { "data": 'disin' },
+                    { "data": 'timeout' },
+                    { "data": 'disout' },
+                    { "data": 'notein' },
+
+                    { "data": 'request' },
+                    { "data": 'reqdate' },
+                    { "data": 'reqtime' },
+
+                    { "data": 'permitdate' },
+                    { "data": 'permittime' },
+                    { "data": 'permitname' },
+                    { "data": 'permit_note' },
+            
+                    { "data": 'verified' },
+                    { "data": 'verifiedname' },
+                    { "data": 'verified_note' },
+                    { "data": 'verifieddate' },
+                    { "data": 'verifiedtime' },
+                    { "data": 'ref' }
+
+                ],
+                "language": {
+                    "url": 'https://cdn.datatables.net/plug-ins/1.13.7/i18n/th.json',
+                },
+                "processing": true,
+                "responsive": true,
+                "autoFill": true,
+              //  "select" : true,
+                "order": [[1, 'asc'], [5, 'asc']],
+                // "columnDefs": [
+                //     {
+                //         "targets": 0,
+                //         "render": DataTable.render.datetime('ddd Do MMM YY')
+                //     }
+                // ],
+                "colReorder": true,
+                // "fixedColumns": true,
+                "fixedHeader": true,
+                "keys": true,
+                "dom": 'Bfrtip',
+                "buttons": [
+                    'excel', 'print',
+                ],
+                "pageLength": 31
+            });
+        });
+
+}
