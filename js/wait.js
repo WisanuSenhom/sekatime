@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded',async function () {
                 "fixedHeader": true,
                 "keys": true,
                "dom": 'lBfrtip', // เพิ่ม 'l' เพื่อแสดง "Show [n] entries"
-                "lengthMenu": [ [10, 30, 50, 100, 150, -1], [10, 30, 50, 100, 150, "All"] ], // รายการตัวเลือกในปุ่ม
+                "lengthMenu": [ [10, 30, 50, 100, 150, -1], [10, 30, 50, 100, 150, "ทั้งหมด"] ], // รายการตัวเลือกในปุ่ม
 
                 "pageLength": 30,
 
