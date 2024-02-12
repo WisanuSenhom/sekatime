@@ -80,7 +80,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                     "fixedColumns": true,
                     "fixedHeader": true,
                     "keys": true,
-                    "dom": 'Bfrtip',
+                    "dom": 'lBfrtip', // เพิ่ม 'l' เพื่อแสดง "Show [n] entries"
+                "lengthMenu": [ [10, 30, 50, 100, 150, -1], [10, 30, 50, 100, 150, "All"] ], // รายการตัวเลือกในปุ่ม
                     "createdRow": function (row, data, dataIndex) {
                         // Add the span element with the appropriate CSS class to the 'status' column
                         const statusCell = $('td', row).eq(0); // Assuming 'status' is the 9th column (index 8)
@@ -482,7 +483,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         // สิ้นสุดปุ่ม
                     ],
                     "select": true,
-                    //  "pageLength": 20
+                      "pageLength": 10
                 });
 
             })
