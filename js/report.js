@@ -145,7 +145,7 @@ async function fetchData(sDate, eDate, limit) {
                 "responsive": true,
                 "autoFill": true,
               //  "select" : true,
-                "order": [[22, 'asc'], [5, 'asc']],
+                "order": [[1, 'asc'], [5, 'asc']],
                 // "columnDefs": [
                 //     {
                 //         "targets": 0,
