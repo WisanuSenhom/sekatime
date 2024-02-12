@@ -357,7 +357,8 @@ async function fetchData(formattedDate) {
                 // "fixedColumns": true,
                 "fixedHeader": true,
                 "keys": true,
-                "dom": 'Bfrtip',
+               "dom": 'lBfrtip', // เพิ่ม 'l' เพื่อแสดง "Show [n] entries"
+                "lengthMenu": [ [10, 30, 50, 100, 150, -1], [10, 30, 50, 100, 150, "All"] ], // รายการตัวเลือกในปุ่ม
                 "buttons": [
                     'excel', 'print',
                 ],
