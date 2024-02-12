@@ -362,7 +362,7 @@ async function fetchData(formattedDate) {
                 "buttons": [
                     'excel', 'print',
                 ],
-                "pageLength": 31
+                "pageLength": 30
             });
         });
 
