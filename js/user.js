@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     "fixedHeader": true,
                     "keys": true,
                     "dom": 'lBfrtip', // เพิ่ม 'l' เพื่อแสดง "Show [n] entries"
-                "lengthMenu": [ [10, 30, 50, 100, 150, -1], [10, 30, 50, 100, 150, "All"] ], // รายการตัวเลือกในปุ่ม
+                "lengthMenu": [ [10, 30, 50, 100, 150, -1], [10, 30, 50, 100, 150, "ทั้งหมด"] ], // รายการตัวเลือกในปุ่ม
                     "createdRow": function (row, data, dataIndex) {
                         // Add the span element with the appropriate CSS class to the 'status' column
                         const statusCell = $('td', row).eq(0); // Assuming 'status' is the 9th column (index 8)
