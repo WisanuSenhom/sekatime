@@ -371,7 +371,7 @@ body{
     margin-top: 36px;
 }
 
-.content main .insights li{
+.content main .insights a{
     padding: 24px;
     background: var(--light);
     border-radius: 20px;
