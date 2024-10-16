@@ -580,7 +580,7 @@ body{
 
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 450px) {
     
     .content nav form .form-input input{
         display: none;
@@ -628,6 +628,7 @@ body{
     }
 
 }
+
 
 
 .loader-wrapper {
