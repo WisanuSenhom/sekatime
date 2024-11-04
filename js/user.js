@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                         inputValidator: (value) => {
                                             return new Promise((resolve) => {
                                                 if (value !== '') {
-                                                    fetch(`https://script.google.com/macros/s/AKfycbz0tjKWPT4kawZplDkWr67d0PncRzdWX6FyC2FK-x5_bzPO-D30xBAL-irqAUMnJSeg/exec?id=${selectedId}&sts=${value}`)
+                                                    fetch(`https://script.google.com/macros/s/AKfycbzG3iZIFdXR_GtjwdXhVYgjKG5v5TkZY9z4ECoqQU8128z_xeq4jgRFtR-DmOtYZkjF/exec?id=${selectedId}&sts=${value}&updateby=${localStorage.getItem("name")}`)
                                                         .then(response => {
                                                             if (!response.ok) {
                                                                 throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                                     try {
                                         // Fetch user roles from the API
-                                        const response = await fetch(`https://script.google.com/macros/s/AKfycbxRvUvrua5NNeRskiXrcVF4zI1NNgJFRiFaB3a4jIlpB4Mv6NCHoxo_oBKZIuM0M1Zo/exec?id=${userId}`);
+                                        const response = await fetch(`https://script.google.com/macros/s/AKfycbxRvUvrua5NNeRskiXrcVF4zI1NNgJFRiFaB3a4jIlpB4Mv6NCHoxo_oBKZIuM0M1Zo/exec?id=${userId}&updateby=${localStorage.getItem("name")}`);
                                         if (!response.ok) {
                                             throw new Error(`Network response was not ok: ${response.statusText}`);
                                         }
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                 return new Promise((resolve) => {
                                                     if (value !== '') {
                                                         // Update user's permissions using the selected role
-                                                        fetch(`https://script.google.com/macros/s/AKfycbyBJA6m1I4CxRUPE_a5GuN2dDo8gS2Mxr1-qkm9MpCe0xSeo6o-G4cgsP-w8Mh98fua/exec?id=${selectedId}&sts=${value}`)
+                                                        fetch(`https://script.google.com/macros/s/AKfycbyBJA6m1I4CxRUPE_a5GuN2dDo8gS2Mxr1-qkm9MpCe0xSeo6o-G4cgsP-w8Mh98fua/exec?id=${selectedId}&sts=${value}&updateby=${localStorage.getItem("name")}`)
                                                             .then(response => {
                                                                 if (!response.ok) {
                                                                     throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                                     try {
                                         // Fetch options from API
-                                        const response = await fetch(`https://script.google.com/macros/s/AKfycbzlanx_NXl5qy1mlvQP6oMl6zElUxDJ9nLUiZEqIHO0RKP7OcxkHKo5n_XUb-5UEHRN/exec?xmain=${xmain}`);
+                                        const response = await fetch(`https://script.google.com/macros/s/AKfycbzlanx_NXl5qy1mlvQP6oMl6zElUxDJ9nLUiZEqIHO0RKP7OcxkHKo5n_XUb-5UEHRN/exec?xmain=${xmain}&updateby=${localStorage.getItem("name")}`);
 
                                         if (!response.ok) {
                                             throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                                 return new Promise((resolve) => {
                                                     if (value !== '') {
                                                         // Make API call to update selected data
-                                                        fetch(`https://script.google.com/macros/s/AKfycbycQZ5goIDuxiTSnaA6NTGGY5sgmKfVgDAt1wDDXqxn6sGRfDnYODVHJH67BQd_TvADbw/exec?id=${selectedId}&sts=${value}`)
+                                                        fetch(`https://script.google.com/macros/s/AKfycbycQZ5goIDuxiTSnaA6NTGGY5sgmKfVgDAt1wDDXqxn6sGRfDnYODVHJH67BQd_TvADbw/exec?id=${selectedId}&sts=${value}&updateby=${localStorage.getItem("name")}`)
                                                             .then(response => {
                                                                 if (!response.ok) {
                                                                     throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                                         inputValidator: (value) => {
                                             return new Promise((resolve) => {
                                                 if (value.trim() !== '') {
-                                                    fetch(`https://script.google.com/macros/s/AKfycbzJb3Bsc5VNCvukDAdS_LKgTzSIQqIRO8H_882LAFJM0YJNnsyagUEa5QcuMn4yYHii/exec?id=${selectedId}&sts=${value.trim()}`)
+                                                    fetch(`https://script.google.com/macros/s/AKfycbzJb3Bsc5VNCvukDAdS_LKgTzSIQqIRO8H_882LAFJM0YJNnsyagUEa5QcuMn4yYHii/exec?id=${selectedId}&sts=${value.trim()}&updateby=${localStorage.getItem("name")}`)
                                                         .then(response => {
                                                             if (!response.ok) {
                                                                 throw new Error(`Network response was not ok: ${response.statusText}`);
@@ -494,6 +494,3 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 });
-
-
-
