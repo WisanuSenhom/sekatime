@@ -81,13 +81,15 @@ async function getmember(yourid,yourpic){
          localStorage.setItem("upic", user.upic);
 
          localStorage.setItem("refid", user.refid);
-         console.log(localStorage.getItem("refid"));
+         // console.log(localStorage.getItem("refid"));
+
+         localStorage.setItem("rank", user.rank);
 
             Swal.fire({
                 confirmButtonColor: '#0ef',
                 icon: 'success',
                 title: 'ลงชื่อเข้าใช้สำเร็จแล้ว',
-          
+          allowOutsideClick: false
             }).then((result) => {
                 // ตรวจสอบว่าผู้ใช้กดปุ่มตกลงหรือไม่
                 if (result.isConfirmed) {
