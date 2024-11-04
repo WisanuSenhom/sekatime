@@ -564,3 +564,93 @@ function craetetoken() {
     }
   });
 }
+
+function editpic() {
+  var yourpic = localStorage.getItem("yourpic");
+  if (!yourpic || yourpic.trim() === "") {
+    // Show a warning message using SweetAlert
+    Swal.fire({
+      title: "ไม่พบรูปโปรไฟล์ LINE ของคุณ",
+      text: 'ระบบจะลงชื่อออกและนำคุณเข้าสู่ระบบใหม่อีกครั้ง เมื่อคุณกด "ยืนยัน" เพื่อแก้ไขปัญหานี้',
+      icon: "error",
+      confirmButtonText: "ยืนยัน",
+      cancelButtonText: "ยกเลิก",
+      confirmButtonColor: "#008000",
+cancelButtonColor: '#6F7378',
+      showCancelButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // เคลียร์ localStorage
+        localStorage.clear();
+        // รีโหลดหน้าเว็บ
+        location.reload();
+      }
+    });
+
+    return; // Exit the function to prevent further execution
+  }
+  Swal.fire({
+    title: "แก้ไขรูปภาพประจำตัวของคุณ.!",
+
+    imageUrl: yourpic,
+    imageWidth: 200,
+    imageHeight: 200,
+    imageAlt: "Custom image",
+
+    showCancelButton: true,
+    allowOutsideClick: false,
+    confirmButtonColor: "#008000",
+    cancelButtonColor: '#6F7378',
+    confirmButtonText: "ตกลง",
+    cancelButtonText: "ยกเลิก",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Show loading status
+      Swal.fire({
+        title: "กำลังปรับปรุงรูปโปรไฟล์...",
+        text: "โปรดรอสักครู่",
+        icon: "info",
+        allowOutsideClick: false,
+        showConfirmButton: false, // Hide confirm button
+        didOpen: () => {
+          Swal.showLoading(); // Show loading spinner
+        },
+      });
+
+      var urlperson = `https://script.google.com/macros/s/AKfycbyJkVKoVcJV28-1NitWY-WwST5AWHguNDO1aB-l-4ZCCYyNDuBRznMvCbyLxjLi2EJU5Q/exec`;
+      var dataperson = `?id=${localStorage.getItem("uuid")}&pic=${yourpic}`;
+      fetch(urlperson + dataperson)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          // Show a success message using SweetAlert
+          Swal.fire({
+            title: "สำเร็จ!",
+            text: "การแก้ไขข้อมูลเสร็จสิ้น ระบบจะทำการรีเซ็ตอัตโนมัติ",
+            icon: "success",
+            confirmButtonColor: "#008000",
+            allowOutsideClick: false,
+          }).then(() => {
+            localStorage.clear();
+            location.reload();
+          });
+        })
+        .catch((error) => {
+          // Handle any errors that occurred during the fetch
+          console.error("Fetch error:", error);
+
+          // Show an error message using SweetAlert
+          Swal.fire({
+            title: "เกิดข้อผิดพลาด",
+            text: "ไม่สามารถแก้ไขข้อมูลได้",
+            icon: "error",
+            confirmButtonColor: "#bb2124",
+          });
+        });
+    }
+  });
+}
