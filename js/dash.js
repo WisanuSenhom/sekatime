@@ -143,8 +143,8 @@ function sheet1() {
                 //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
                 // } else if (mainsub == 'สสอ.ศรีวิไล') {
                 //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
-                // } else if (mainsub == 'สสอ.บุ่งคล้า') {
-                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                 } else if (mainsub == 'สสอ.บุ่งคล้า') {
+                     window.open('https://docs.google.com/spreadsheets/d/1x1tF2c5qshpwAV-A3TIaFD4LaXaiX_lMDdW1tX4cFdw/edit?usp=sharing', '_blank');
                 } else {
                     // Display a Swal.fire notification for unknown code values
                     Swal.fire({
@@ -199,9 +199,9 @@ function looker() {
                 // } else if (mainsub == 'สสอ.บึงโขงหลง') {
                 //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
                 // } else if (mainsub == 'สสอ.ศรีวิไล') {
-                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
-                // } else if (mainsub == 'สสอ.บุ่งคล้า') {
-                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                //     window.open('https://lookerstudio.google.com/reporting/3bb599c7-bdad-41cb-869b-3f0dc53ffb5c', '_blank');
+                 } else if (mainsub == 'สสอ.บุ่งคล้า') {
+                     window.open('ลิงค์ที่ต้องการ 2', '_blank');
                 } else {
                     // Display a Swal.fire notification for unknown code values
                     Swal.fire({
