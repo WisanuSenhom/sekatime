@@ -201,7 +201,7 @@ function looker() {
                 // } else if (mainsub == 'สสอ.ศรีวิไล') {
                 //     window.open('https://lookerstudio.google.com/reporting/3bb599c7-bdad-41cb-869b-3f0dc53ffb5c', '_blank');
                  } else if (mainsub == 'สสอ.บุ่งคล้า') {
-                     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                     window.open('https://lookerstudio.google.com/reporting/3bb599c7-bdad-41cb-869b-3f0dc53ffb5c', '_blank');
                 } else {
                     // Display a Swal.fire notification for unknown code values
                     Swal.fire({
