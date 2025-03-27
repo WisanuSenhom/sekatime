@@ -570,12 +570,12 @@ body{
 
 @media screen and (max-width: 768px) {
     .sidebar{
-        width: 200px;
+        width: 130px;
     }
 
     .content{
         width: calc(100% - 60px);
-        left: 200px;
+        left: 130px;
     }
 
 }
