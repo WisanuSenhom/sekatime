@@ -1,36 +1,33 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // เมื่อหน้าเว็บโหลดเสร็จ
     checkLocalStorage();
+    applySystemTheme();
 });
 
 function checkLocalStorage() {
-    // ตรวจสอบค่า uuid ใน local storage
     var storedUUID = localStorage.getItem("uuid");
 
-    // ถ้าค่า uuid ไม่มีหรือเป็นค่าว่าง
     if (!storedUUID || storedUUID.trim() === "") {
-        // ไปหน้า login
         window.location.href = "login.html";
     }
-    // ถ้ามีค่า uuid ใน local storage
-    // คุณสามารถทำตามที่คุณต้องการทำต่อไป
-    // เช่น แสดงข้อมูลหรือทำอย่างอื่น
-
 
     const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
     document.querySelector('#upic').src = localStorage.getItem('upic');
+    
     sideLinks.forEach(item => {
         const li = item.parentElement;
         item.addEventListener('click', () => {
-            sideLinks.forEach(i => {
-                i.parentElement.classList.remove('active');
-            })
+            sideLinks.forEach(i => i.parentElement.classList.remove('active'));
             li.classList.add('active');
-        })
+        });
     });
 
     const menuBar = document.querySelector('.content nav .bx.bx-menu');
     const sideBar = document.querySelector('.sidebar');
+
+    // ซ่อน Sidebar ทันทีหากเป็นหน้าจอมือถือ
+    if (window.innerWidth < 768) {
+        sideBar.classList.add('close');
+    }
 
     menuBar.addEventListener('click', () => {
         sideBar.classList.toggle('close');
@@ -42,7 +39,7 @@ function checkLocalStorage() {
 
     searchBtn.addEventListener('click', function (e) {
         if (window.innerWidth < 576) {
-            e.preventDefault;
+            e.preventDefault();
             searchForm.classList.toggle('show');
             if (searchForm.classList.contains('show')) {
                 searchBtnIcon.classList.replace('bx-search', 'bx-x');
@@ -63,19 +60,29 @@ function checkLocalStorage() {
             searchForm.classList.remove('show');
         }
     });
+}
 
+function applySystemTheme() {
     const toggler = document.getElementById('theme-toggle');
+    const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
 
-    toggler.addEventListener('change', function () {
-        if (this.checked) {
-            document.body.classList.add('dark');
-        } else {
-            document.body.classList.remove('dark');
-        }
+    // ตั้งค่าธีมตามธีมของระบบ
+    document.body.classList.toggle("dark", prefersDarkMode.matches);
+    toggler.checked = prefersDarkMode.matches;
+
+    // อัปเดตธีมอัตโนมัติเมื่อระบบเปลี่ยนธีม
+    prefersDarkMode.addEventListener("change", (e) => {
+        document.body.classList.toggle("dark", e.matches);
+        toggler.checked = e.matches;
     });
 
-
+    // ให้ผู้ใช้เปลี่ยนธีมเอง (ไม่มีการเก็บค่า)
+    toggler.addEventListener("change", function () {
+        document.body.classList.toggle("dark", this.checked);
+    });
 }
+
+
 
 function refreshPage() {
     location.reload(true); // รีเฟรชหน้าเว็บ
