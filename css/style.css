@@ -580,7 +580,7 @@ body{
 
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 340px) {
     
     .content nav form .form-input input{
         display: none;
