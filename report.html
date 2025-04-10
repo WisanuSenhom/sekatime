@@ -259,6 +259,11 @@
  <!-- <link rel="stylesheet" href="" />
 <script type="text/javascript" src=""></script> -->
 
+  <script>
+  var TotalRow = localStorage.getItem("LastRow") || 300;
+  document.getElementById("limit").value = TotalRow;
+</script>
+
 </body>
 
 </html>
