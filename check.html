@@ -233,6 +233,10 @@
  <link rel="stylesheet" href="https://cdn.datatables.net/select/1.7.0/css/select.dataTables.min.css" />
 <script type="text/javascript" src="https://cdn.datatables.net/select/1.7.0/js/dataTables.select.min.js"></script>
 
+  <script>
+  var TotalRow = localStorage.getItem("LastRow") || 300;
+  document.getElementById("limit").value = TotalRow;
+</script>
 </body>
 
 </html>
