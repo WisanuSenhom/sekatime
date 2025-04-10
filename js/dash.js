@@ -68,6 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 report04: data.cc[0].check
             };
 
+            localStorage.setItem("LastRow", data.cc[0].all);
+
             animateNumbers(report01, targetValues.report01, 1000);
             animateNumbers(report02, targetValues.report02, 1000);
             animateNumbers(report03, targetValues.report03, 1000);
