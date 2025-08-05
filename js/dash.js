@@ -1,50 +1,73 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Retrieve the username from local storage
-    var uname = localStorage.getItem("name");
+document.addEventListener("DOMContentLoaded", async function () {
+    // Retrieve values from localStorage with safe defaults
+    const uname = localStorage.getItem("name") || "ผู้ใช้งานไม่ระบุชื่อ";
+    const refid = localStorage.getItem("refid") || "";
+    const db1 = localStorage.getItem("db1") || "";
 
-    // Select the element with id "utimeline"
-    var utimelineElement = document.getElementById("utimeline");
+    const utimelineElement = document.getElementById("utimeline");
+    if (!utimelineElement) {
+        console.warn("Element with id 'utimeline' not found in DOM.");
+    }
 
-    // Fetch data from the server (replace 'your_api_endpoint' with the actual API endpoint)
-    var gas = 'https://script.google.com/macros/s/AKfycby0bCwNY5tyoVzfb1aM_48Yvs0PInOqUEnb_Aw2Bdyt4t2dBQ-m3FBA4lkMtmgaYHC53w/exec';
-    var qdata = `?id=${localStorage.getItem("refid")}&db=${localStorage.getItem("db1")}`;
+    // Build and encode query string
+    const params = new URLSearchParams({
+        id: refid,
+        db: db1
+    });
 
-    fetch(gas + qdata)
-        .then(response => response.json())
-        .then(data => {
-            if (data.cc && data.cc.length > 0) {
-                // Assuming the server response has a property named 'cc' and 'intime'
-                var timelineData = `${uname} : การปฏิบัติงาน ${data.cc[0].intype} , ลงเวลาเมื่อ ${data.cc[0].intime} , ระยะ ${data.cc[0].indistan} ${data.cc[0].inunit}, พิกัด ${data.cc[0].geo}`; // Assuming you want the first 'intime' value
+    const gas = 'https://script.google.com/macros/s/AKfycby0bCwNY5tyoVzfb1aM_48Yvs0PInOqUEnb_Aw2Bdyt4t2dBQ-m3FBA4lkMtmgaYHC53w/exec';
+    const url = `${gas}?${params.toString()}`;
 
-                // Set the text content of the element with the fetched data
-                utimelineElement.innerText = timelineData;
-            } else {
-                var timelineData = `${uname} : ยังไม่ลงเวลาในการปฏิบัติงาน `;
-                utimelineElement.innerText = timelineData;
-              //  console.error('Invalid or empty server response:', data);
-           
-                // Handle errors or empty responses here
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            // Handle fetch errors here
-        });
-// เรียกรายงานลงเวลาประจำเดือน
-// รับวันที่ปัจจุบัน
-var currentDate = new Date();
+    // console.log("Fetching timeline from:", url);
 
-// ดึงปีและเดือน
-var year = currentDate.getFullYear();
-var month = currentDate.getMonth() + 1; // เดือนเริ่มต้นที่ 0 (มกราคม) ดังนั้นต้องเพิ่ม 1
-
-// รูปแบบ yyyymm
-var formattedDate = year.toString() + (month < 10 ? '0' : '') + month.toString();
-
-//console.log(formattedDate); // ผลลัพธ์เช่น "202402" (สำหรับเดือนกุมภาพันธ์ 2024)
-fetchData(formattedDate);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status} ${response.statusText}`);
     
+        const data = await response.json();
+     //   console.log("Raw fetched data:", data); 
+    
+        let timelineData;
+        // รองรับทั้ง array และ object
+        const d = Array.isArray(data) ? (data[0] || {}) : data || {};
+    
+        // เช็กว่ามีข้อมูลสำคัญหรือไม่ (เช่น intime)
+        if (d && (d.intime || d.intype || d.geo)) {
+            timelineData = `${uname} : การปฏิบัติงาน ${d.intype || "-"} , ลงเวลาเมื่อ ${d.intime || "-"} , ระยะ ${d.indistan ?? 0} ${d.inunit || ""}`;
+        } else {
+            timelineData = `${uname} : ยังไม่ลงเวลาในการปฏิบัติงาน`;
+        }
+    
+        if (utimelineElement) utimelineElement.innerText = timelineData;
+    
+    } catch (err) {
+      //  console.error('Error fetching data:', err);
+        if (utimelineElement) {
+            utimelineElement.innerText = `${uname} : เกิดข้อผิดพลาดในการดึงข้อมูล`;
+        }
+    }
+    
+
+    // ====== รายงานลงเวลาประจำเดือน ======
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // 0-based
+    const formattedDate = `${year}${month < 10 ? '0' : ''}${month}`; // e.g., "202508"
+
+    // Call the missing function; you need to implement this based on your API
+    fetchData(formattedDate);
 });
+
+// Placeholder: implement according to your monthly report API
+async function fetchData(yyyymm) {
+    console.log("fetchData called for period:", yyyymm);
+    // Example: adapt endpoint and parameters as needed
+    // const reportUrl = `https://your.api/ot-report?period=${encodeURIComponent(yyyymm)}`;
+    // const resp = await fetch(reportUrl);
+    // const json = await resp.json();
+    // TODO: process/display monthly report
+}
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
