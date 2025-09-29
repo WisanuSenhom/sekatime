@@ -158,8 +158,8 @@ function sheet1() {
                     window.open('https://docs.google.com/spreadsheets/d/18m82mO9zpcI9EXSAwqEqClPABrxpjRPz2UGSZ9G7qZ4/edit', '_blank');
                  } else if (mainsub == 'รพ.เซกา') {
                      window.open('https://docs.google.com/spreadsheets/d/1iejDnyyat5rIgUE-ze3qxnHK1V1ynWacLk0c1EEI27I/edit', '_blank');
-                // } else if (mainsub == 'สสอ.พรเจริญ') {
-                //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
+                } else if (mainsub == 'สสอ.พรเจริญ') {
+                    window.open('https://docs.google.com/spreadsheets/d/1l4WgdxT-mzALNTgfQuczzmH-7oHgsbEzGMuJYmfWApQ/edit', '_blank');
                 // } else if (mainsub == 'สสอ.โซ่พิสัย') {
                 //     window.open('ลิงค์ที่ต้องการ 2', '_blank');
                 // } else if (mainsub == 'สสอ.ปากคาด') {
